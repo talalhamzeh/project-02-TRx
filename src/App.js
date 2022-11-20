@@ -15,12 +15,10 @@ import Col from 'react-bootstrap/Col';
 export default function App() {
   return (
     <div class="main">
-      <Container>
-      <Row>
-        <Col xs={6}><Banner /></Col>
-        <Col><Navbar /></Col>
-      </Row>
-    </Container>
+        <Row>
+        <Col class=".col-12"><Banner /></Col>
+        <Col class=".col-6"><Navbar /></Col>
+        </Row>
       <Router>
         <Switch>
           <Route exact path="/" component={HomePage} />
