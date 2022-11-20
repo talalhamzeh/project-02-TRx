@@ -31,7 +31,7 @@ export default function LoginPage() {
     }
   //if loading is true we disable the button 
     return (
-        <div id = "main"> 
+        <div class="content"> 
             <div>
             <div>Currently logged in as: { currentUser?.email } </div>
             </div>
