@@ -4,7 +4,7 @@ import {Nav} from "react-bootstrap";
 import './Navbar.css'
 
 
-const Navbar2 = () => {
+const Navbar = () => {
     return (
         <div className="App">
             <nav className="navbar navbar-expand-lg navbar-light fixed-top">
@@ -42,7 +42,7 @@ const Navbar2 = () => {
     );
 }
 
-export default Navbar2;
+export default Navbar;
 
 // sophia's navbar 
 
