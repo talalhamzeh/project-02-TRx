@@ -3,6 +3,8 @@ import React from 'react';
 import { useRef, useState } from "react";
 import { signup, login ,logout ,useAuth} from "./firebase"; 
 
+import './loginpage.css'; 
+
 export default function LoginPage() {
     const [ loading, setLoading ] = useState(false);
     //return from the custom hook 
@@ -45,3 +47,5 @@ export default function LoginPage() {
         </div>
     );
 }
+
+
