@@ -11,23 +11,43 @@ import Navbar from "./components/Home/Navbar2";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Login from './components/Login/Login';
+import Signup from './components/Login/SignUp';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+
+
+
 
 export default function App() {
   return (
+    <Router>
     <div class="main">
+
         <Row>
+        
         <Col class=".col-12"><Banner /></Col>
         <Col class=".col-6"><Navbar /></Col>
+ 
         </Row>
-      <Router>
+      
+       
         <Switch>
-          <Route exact path="/" component={HomePage} />
+          <Route exact path="/home" component={HomePage} />
+        </Switch>
+        <div className="auth-wrapper">
+          <div className="auth-inner">
+        <Switch>
+          <Route path="/login" component={Login} />
         </Switch>
         <Switch>
-          <Route path="/login" component={LoginPage} />
+          <Route path="/signup" component={Signup} />
         </Switch>
+
+        </div> 
+         </div> 
+         </div>
       </Router>
-    </div>
+    
   );
 }
 
