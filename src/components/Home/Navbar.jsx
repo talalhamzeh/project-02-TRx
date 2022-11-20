@@ -9,7 +9,7 @@ const Navbar = () => {
             <h1>Navbar.</h1>
             <ul class="list-unstyled components mb-5">
                 <li class="active">
-                    <a href="#"><span class="fa fa-user"></span> Home</a>
+                    <a href="../login"><span class="fa fa-user"></span> Home</a>
                 </li>
                 <li>
                     <a href="#"><span class="fa fa-user"></span> About</a>
