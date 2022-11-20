@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Banner from "./components/Banner";
 import HomePage from "./components/Home/HomePage";
 import LoginPage from "./components/Login/LoginPage";
-import Navbar from "./components/Home/Navbar";
+import Navbar from "./components/Home/Navbar2";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';

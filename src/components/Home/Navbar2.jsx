@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import {Nav} from "react-bootstrap";
 
-const Navbar = () => {
+const Navbar2 = () => {
     return (
         <div class="wrapper d-flex align-items-stretch">
             <nav id="sidebar" class="active">
@@ -30,4 +30,4 @@ const Navbar = () => {
     );
 }
 
-export default Navbar;
+export default Navbar2;
