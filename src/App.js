@@ -1,63 +1,33 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 // to get the result from the input we use useref 
 import { useRef, useState } from "react";
-import { signup, login ,logout ,useAuth} from "./firebase"; 
+import { signup, login ,logout ,useAuth} from "./components/Login/firebase"; 
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Banner from "./components/Banner";
+import HomePage from "./components/Home/HomePage";
+import LoginPage from "./components/Login/LoginPage";
+import Navbar from "./components/Home/Navbar";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 export default function App() {
-  const [ loading, setLoading ] = useState(false);
-  //return from the custom hook 
-  // set curretn user auth in the firebaser
-  const currentUser = useAuth(); 
-
-
-
-
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  // we made this async signup is gonna retun a prom as it in the retunr create
-
-  
-  async function handleLogin() {
-   
-    await login(emailRef.current.value, passwordRef.current.value);
-  
-    setLoading(false);
-  }
-  async function handleSignup() {
-   
-    await signup(emailRef.current.value, passwordRef.current.value);
-  
-    setLoading(false);
-  }
-
-  async function handleLogout() {
-   
-    await logout();
-  
-    setLoading(false);
-  }
-
-//if loading is true we disable the button 
-
   return (
-    <div id = "main"> 
-    <div>
-    <div>Currently logged in as: { currentUser?.email } </div>
+    <div class="main">
+        <Row>
+        <Col class=".col-12"><Banner /></Col>
+        <Col class=".col-6"><Navbar /></Col>
+        </Row>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+        </Switch>
+        <Switch>
+          <Route path="/login" component={LoginPage} />
+        </Switch>
+      </Router>
     </div>
-
-      <div id="fields">
-        <input ref={emailRef} placeholder="Email" />
-        <input ref={passwordRef} type="password" placeholder="Password" />
-      </div>
-
-      <button disabled={ loading || currentUser } onClick={handleSignup}>Sign Up</button>
-      <button disabled={ loading || currentUser } onClick={handleLogin}>Log In</button>
-
-      <button disabled={ loading || !currentUser } onClick={handleLogout}>Log Out</button>
-
-    </div>
-
-
   );
 }
-
 

@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -25,4 +26,89 @@ button {
 }
 #fields{
   margin: 20px 0px;
+}
+
+.banner {
+  width: 81.5vw;
+  height: 40vh;
+  float: right;
+}
+
+.wrapper {
+  width: 100%;
+}
+
+body{
+	font-family: $font-primary;
+	font-size: 14px;
+	line-height: 1.8;
+	font-weight: normal;
+}
+
+a {
+	transition: .3s all ease;
+	color: white;
+}
+
+a:hover, a:focus {
+		text-decoration: none !important;
+		outline: none !important;
+		box-shadow: none;
+    color: orange;
+	}
+
+
+
+h1, h2, h3, h4, h5,
+.h1, .h2, .h3, .h4, .h5 {
+	line-height: 1.5;
+	font-weight: 400;
+	font-family: $font-primary;
+	color: $black;
+}
+
+
+
+#sidebar {
+  min-width: 10vw;
+  background: #399c87;
+  color: #fff;
+  display: fixed;
+  margin-top: -290px;
+  height: 100vh;
+  width: 20vw;
+}
+
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+
+#content {
+  width: 100%;
+  padding: 0;
+  min-height: 100vh;
+  transition: all 0.3s;
+}
+
+.content {
+  width: 40vw;
+  left: 20%;
+  position: fixed;
+  top: 45%;
+  padding: 1em; 
+}
+
+
+
+@media screen and (min-width:320px) and (max-width:640px) {
+  .banner {
+    width: 81.5vw;
+  }
+
+  #sidebar {
+    width: 20vw;
+  }
+  
 }
