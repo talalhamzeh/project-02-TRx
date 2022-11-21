@@ -5,10 +5,7 @@ import Col from 'react-bootstrap/Col';
 
 const HomePage = () => {
     return (
-        <div class="content">
-        <Col class=".col-12 .col-md-8">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam dicta debitis repudiandae corporis, impedit culpa, veniam necessitatibus rem placeat in aperiam consectetur ipsum et nostrum quae magnam ab dignissimos amet?</p></Col>
-        </div>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae natus similique exercitationem rem ab fuga nihil ipsum ut veritatis nam, dicta, doloribus deleniti, quis minima necessitatibus distinctio asperiores quam sint!</p>
     );
 }
 
