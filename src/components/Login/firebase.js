@@ -53,3 +53,5 @@ export function useAuth(){
 
     return currentUser
 }
+
+export const firestore = getFirestore(app);
