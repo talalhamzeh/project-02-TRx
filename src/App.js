@@ -8,6 +8,12 @@ import Banner from "./components/Banner";
 import HomePage from "./components/Home/HomePage";
 import LoginPage from "./components/Login/LoginPage";
 import Navbar from "./components/Home/Navbar";
+import MedicationIndex from "./components/Medication/MedicationIndex";
+import CreateJournal from "./components/Journals/CreateJournal";
+import JournalIndex from "./components/Journals/JournalIndex";
+import CreatePrescription from "./components/Prescriptions/CreatePrescription";
+import PrescriptionIndex from "./components/Prescriptions/PrescriptionIndex";
+import EditPrescription from "./components/Prescriptions/EditPrescription";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -36,6 +42,24 @@ export default function App() {
           </Switch>
           <Switch>
             <Route path="/signup" component={Signup} />
+          </Switch>
+          <Switch>
+            <Route path="/medications" component={MedicationIndex} />
+          </Switch>
+          <Switch>
+            <Route path="/journals" component={JournalIndex} />
+          </Switch>
+          <Switch>
+            <Route path="/journals/new" component={CreateJournal} />
+          </Switch>
+          <Switch>
+            <Route path="/prescriptions" component={PrescriptionIndex} />
+          </Switch>
+          <Switch>
+            <Route path="/prescriptions/new" component={CreatePrescription} />
+          </Switch>
+          <Switch>
+            <Route path="/prescriptions/update/:id" component={EditPrescription} />
           </Switch>
           </div> 
       </div> 
