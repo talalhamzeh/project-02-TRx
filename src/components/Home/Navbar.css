@@ -7,3 +7,10 @@
     font-weight: 500;
     font-family: "Fira Sans", sans-serif;
   } 
+  .right {
+    position:fixed;
+    right:10px;
+    top:5px;
+    color: black;
+  }
+  

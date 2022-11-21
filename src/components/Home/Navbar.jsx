@@ -1,51 +1,73 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {Nav} from "react-bootstrap";
+import {Button, ButtonGroup, Nav} from "react-bootstrap";
+import { logout ,useAuth} from "../Login/firebase"; 
+import { useRef, useState } from "react";
+import { useHistory } from 'react-router-dom';
 import './Navbar.css'
 
-
 const Navbar = () => {
+  
+  const [ loading, setLoading ] = useState(false);
+  const currentUser = useAuth(); 
+  const history = useHistory();
+
+      
+  async function handleLogout() {
+
+    await logout();
+    setLoading(false);
+    history.push("/login")
+  }
+  if (currentUser){
     return (
-        <div className="App">
-         <nav className="navbar navbar-expand-lg navbar-light fixed-top">
+      <div className="App">
+        <nav className="navbar navbar-expand-lg navbar-light fixed-top">
           <div className="container">
-            <Link className="navbar-brand" to={'/home'}>
-              TRx
+           <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+              <ul className="navbar-nav ml-auto">
+                <li className="nav-item">
+                  <Link className="nav-link" to={'/home'}>Home</Link>
+                </li>
+                <li className="nav-item">
+                  <a className="right" href="#logout"  onClick={handleLogout}  >Logout</a>
+                </li>
+               
+              
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    )
+  }
+  else { 
+    return(
+      <div className="App">
+        <nav className="navbar navbar-expand-lg navbar-light fixed-top">
+          <div className="container">
+            <Link className="navbar-brand">
+                TRx
             </Link>
             <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
               <ul className="navbar-nav ml-auto">
 
-
-              <li className="nav-item">
-                  <Link className="nav-link" to={'/home'}>
-                    Home
-                  </Link>
+                <li className="nav-item">
+                  <Link className="nav-link" to={'/login'}> Login</Link>
                 </li>
 
                 <li className="nav-item">
-                  <Link className="nav-link" to={'/login'}>
-                    Login
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to={'/signup'}>
-                    Sign up
-                  </Link>
-
-                </li>
-                     <li className="nav-item">
-                        <Link className="nav-link" to={'/logout'}>
-                    Logout
-                  </Link>
-
+                  <Link className="nav-link" to={'/signup'}>Sign up</Link>
                 </li>
               </ul>
             </div>
           </div>
         </nav>
-        </div>
+      </div>
     );
+  }
 }
+
 
 export default Navbar;
 
