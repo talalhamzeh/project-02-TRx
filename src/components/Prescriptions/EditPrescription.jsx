@@ -18,8 +18,8 @@ const EditPrescription = ()=> {
                     console.log(collectionRef)
                     const ref = doc(collectionRef,`${id.id}`)
                     console.log(ref)
-                    setPrescription({...ref.data(),id: ref.id})
-                    console.log(ref.data())
+                    // setPrescription({...ref.data(),id: ref.id})
+                    // console.log(ref.data())
                 }
                 getPresecription()
 
