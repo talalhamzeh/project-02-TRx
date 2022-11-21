@@ -22,31 +22,25 @@ export default function App() {
   return (
     <Router>
     <div class="main">
-
-        <Row>
-        
+      <Row>
         <Col class=".col-12"><Banner /></Col>
         <Col class=".col-6"><Navbar /></Col>
- 
-        </Row>
-      
-       
-        <Switch>
-          <Route exact path="/home" component={HomePage} />
-        </Switch>
-        <div className="auth-wrapper">
+      </Row>
+      <Switch>
+        <Route exact path="/home" component={HomePage} />
+      </Switch>
+      <div className="auth-wrapper">
           <div className="auth-inner">
-        <Switch>
-          <Route path="/login" component={Login} />
-        </Switch>
-        <Switch>
-          <Route path="/signup" component={Signup} />
-        </Switch>
-
-        </div> 
-         </div> 
-         </div>
-      </Router>
+          <Switch>
+            <Route path="/login" component={Login} />
+          </Switch>
+          <Switch>
+            <Route path="/signup" component={Signup} />
+          </Switch>
+          </div> 
+      </div> 
+    </div>
+    </Router>
     
   );
 }

@@ -21,6 +21,7 @@ const Navbar = () => {
   }
   if (currentUser){
     return (
+
       <div className="App">
         <nav className="navbar navbar-expand-lg navbar-light fixed-top">
           <div className="container">
@@ -61,12 +62,13 @@ const Navbar = () => {
                 </li>
               </ul>
             </div>
-          </div>
+            </div>
         </nav>
       </div>
     );
   }
 }
+
 
 
 export default Navbar;
