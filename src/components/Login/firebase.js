@@ -20,7 +20,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
-export const db = getFirestore();
+export const db = getFirestore(app);
 
 export function signup(email, password){
     // we return so we can get the status if it succeded or failed in creating a new user 

@@ -6,6 +6,7 @@ import { signup, login ,logout ,useAuth} from "./components/Login/firebase";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Banner from "./components/Banner";
 import HomePage from "./components/Home/HomePage";
+import CombinedPrescription from "./components/Prescriptions/CombinedPrescription"
 import LoginPage from "./components/Login/LoginPage";
 import Navbar from "./components/Home/Navbar";
 import MedicationIndex from "./components/Medication/MedicationIndex";
@@ -53,14 +54,15 @@ export default function App() {
             <Route path="/journals/new" component={CreateJournal} />
           </Switch>
           <Switch>
-            <Route path="/prescriptions" component={PrescriptionIndex} />
+            <Route path="/prescriptions/update/:id" component={EditPrescription} />
+          </Switch>
+          <Switch>
+            <Route path="/prescriptions" component={CombinedPrescription} />
           </Switch>
           <Switch>
             <Route path="/prescriptions/new" component={CreatePrescription} />
           </Switch>
-          <Switch>
-            <Route path="/prescriptions/update/:id" component={EditPrescription} />
-          </Switch>
+
           </div> 
       </div> 
     </div>
