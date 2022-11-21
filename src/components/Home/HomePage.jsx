@@ -10,7 +10,7 @@ const HomePage = () => {
 
     return (
         <div class="container ">
-           <div>  welcome Back: { currentUser?.email } </div>
+            <div>  welcome Back: { currentUser?.email } </div>
             
             <Col class=".col-12 .col-md-8">
             
