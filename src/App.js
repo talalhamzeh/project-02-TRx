@@ -36,7 +36,6 @@ export default function App() {
           </Switch>
       <div className="auth-wrapper">
           <div className="auth-inner">
-<<<<<<< HEAD
             <Switch>
               <Route path="/login" component={Login} />
             </Switch>
@@ -49,7 +48,7 @@ export default function App() {
             <Switch>
               <Route path="/journals" component={JournalIndex} />
             </Switch>
-            <Switch>
+            {/* <Switch>
               <Route path="/journals/new" component={CreateJournal} />
             </Switch>
             <Switch>
@@ -60,26 +59,10 @@ export default function App() {
             </Switch>
             <Switch>
               <Route path="/prescriptions/update/:id" component={EditPrescription} />
-            </Switch>
+            </Switch> */}
           </div> 
         </div>
-=======
-          <Switch>
-            <Route path="/login" component={Login} />
-          </Switch>
-          <Switch>
-            <Route path="/signup" component={Signup} />
-          </Switch>
-          <Switch>
-            <Route path="/medications" component={MedicationIndex} />
-          </Switch>
-          <Switch>
-            <Route path="/journals" component={JournalIndex} />
-          </Switch>
-          </div> 
-      </div> 
-    </div>
->>>>>>> fe75070fd7e71fb31f15a66bdbc796c402970365
+        </div>
     </Router>
     
     
