@@ -13,13 +13,15 @@ const EditPrescription = ()=> {
         const [prescription, setPrescription] = useState({});
 
             useEffect(() => {
-            //     const getPresecription = async () =>{
-                    const docRef = doc(db, "Prescriptions", id)
-            //         const d = getDoc(docRef)
-            //         console.log(d)
-            console.log(docRef)
-
-            //         setDoc(docRef,prescription)
+                const getPresecription = async () =>{
+                    const collectionRef= collection(firestore,"Prescriptions")
+                    console.log(collectionRef)
+                    const ref = doc(collectionRef,`${id.id}`)
+                    console.log(ref)
+                    // setPrescription({...ref.data(),id: ref.id})
+                    // console.log(ref.data())
+                }
+                getPresecription()
 
 
                     onSnapshot(docRef,(snapshot)=>{
