@@ -36,6 +36,12 @@ export default function App() {
       <Switch>
         <Route exact path="/home" component={HomePage} />
       </Switch>
+<<<<<<< Updated upstream
+=======
+      <Switch>
+            <Route path="/prescriptions" component={CombinedPrescription} />
+          </Switch>
+>>>>>>> Stashed changes
       <div className="auth-wrapper">
           <div className="auth-inner">
           <Switch>
@@ -44,6 +50,7 @@ export default function App() {
           <Switch>
             <Route path="/signup" component={Signup} />
           </Switch>
+<<<<<<< Updated upstream
           <Switch>
             <Route path="/medications" component={MedicationIndex} />
           </Switch>
@@ -66,6 +73,10 @@ export default function App() {
           </div> 
       </div> 
     </div>
+=======
+          </div> 
+      </div> 
+>>>>>>> Stashed changes
     </Router>
     
   );

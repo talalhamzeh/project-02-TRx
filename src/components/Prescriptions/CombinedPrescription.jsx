@@ -27,9 +27,33 @@ const CombinedPrescription = (props)=>{
     }
 
     useEffect(() => {
+<<<<<<< Updated upstream
         getPrescriptions()
     },[]);
 
+=======
+        getPrescriptions();
+    },[]);
+
+    const toIndex = ()=>{
+        setIndexState(true);
+        setNewState(false);
+        setUpdateState(false);
+        setShowState(false)
+    }
+    const toNew = () => {
+        setIndexState(false);
+        setNewState(true);
+        setUpdateState(false);
+        setShowState(false)
+    }
+    const toUpdate = () => {
+        setIndexState(false);
+        setNewState(false);
+        setUpdateState(true);
+        setShowState(false)
+    }
+>>>>>>> Stashed changes
     // if (!currentUser){
     //     // add redirect to login page.
     //     props.history.push("/login")
@@ -37,7 +61,11 @@ const CombinedPrescription = (props)=>{
     if (indexState && prescriptions.length>0){
         console.log(prescriptions ,prescriptions.length)
         return(
+<<<<<<< Updated upstream
             <IndexDisplay prescriptions={prescriptions}/>
+=======
+            <IndexDisplay prescriptions={prescriptions} toNew={toNew} toUpdate={toUpdate}/>
+>>>>>>> Stashed changes
         )
     }
     if(indexState){
@@ -45,7 +73,13 @@ const CombinedPrescription = (props)=>{
             <p>Loading..</p>
         )
     }
+<<<<<<< Updated upstream
     
+=======
+    if (newState){
+        <NewPrescription toIndex={toIndex}/>
+    }
+>>>>>>> Stashed changes
 
 
 }
