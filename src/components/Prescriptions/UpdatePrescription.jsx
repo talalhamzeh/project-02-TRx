@@ -15,4 +15,5 @@ const UpdatePrescription = ({prescription, toIndex})=>{
         </div>
     )
 }
+
 export default UpdatePrescription

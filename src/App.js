@@ -8,7 +8,7 @@ import CombinedPrescription from "./components/Prescriptions/CombinedPrescriptio
 import LoginPage from "./components/Login/LoginPage";
 import Navbar from "./components/Home/Navbar";
 import MedicationIndex from "./components/Medication/MedicationIndex";
-import JournalIndex from "./components/Journals/JournalIndex";
+import Journals from "./components/Journals/Journals";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -46,7 +46,7 @@ export default function App() {
               <Route path="/medications" component={MedicationIndex} />
             </Switch>
             <Switch>
-              <Route path="/journals" component={JournalIndex} />
+              <Route path="/journals" component={Journals} />
             </Switch>
             {/* <Switch>
               <Route path="/journals/new" component={CreateJournal} />
