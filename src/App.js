@@ -1,8 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 // to get the result from the input we use useref 
-import { useRef, useState } from "react";
-import { signup, login ,logout ,useAuth} from "./components/Login/firebase"; 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Banner from "./components/Banner";
 import HomePage from "./components/Home/HomePage";
@@ -10,11 +8,7 @@ import CombinedPrescription from "./components/Prescriptions/CombinedPrescriptio
 import LoginPage from "./components/Login/LoginPage";
 import Navbar from "./components/Home/Navbar";
 import MedicationIndex from "./components/Medication/MedicationIndex";
-import CreateJournal from "./components/Journals/CreateJournal";
 import JournalIndex from "./components/Journals/JournalIndex";
-import CreatePrescription from "./components/Prescriptions/CreatePrescription";
-import PrescriptionIndex from "./components/Prescriptions/PrescriptionIndex";
-import EditPrescription from "./components/Prescriptions/EditPrescription";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -36,12 +30,9 @@ export default function App() {
       <Switch>
         <Route exact path="/home" component={HomePage} />
       </Switch>
-<<<<<<< Updated upstream
-=======
       <Switch>
             <Route path="/prescriptions" component={CombinedPrescription} />
           </Switch>
->>>>>>> Stashed changes
       <div className="auth-wrapper">
           <div className="auth-inner">
           <Switch>
@@ -50,33 +41,15 @@ export default function App() {
           <Switch>
             <Route path="/signup" component={Signup} />
           </Switch>
-<<<<<<< Updated upstream
           <Switch>
             <Route path="/medications" component={MedicationIndex} />
           </Switch>
           <Switch>
             <Route path="/journals" component={JournalIndex} />
           </Switch>
-          <Switch>
-            <Route path="/journals/new" component={CreateJournal} />
-          </Switch>
-          <Switch>
-            <Route path="/prescriptions/update/:id" component={EditPrescription} />
-          </Switch>
-          <Switch>
-            <Route path="/prescriptions" component={CombinedPrescription} />
-          </Switch>
-          <Switch>
-            <Route path="/prescriptions/new" component={CreatePrescription} />
-          </Switch>
-
           </div> 
       </div> 
     </div>
-=======
-          </div> 
-      </div> 
->>>>>>> Stashed changes
     </Router>
     
   );
