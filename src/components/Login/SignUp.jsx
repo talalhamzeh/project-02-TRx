@@ -3,7 +3,7 @@ import { useRef, useState } from "react";
 import { signup ,useAuth} from "./firebase"; 
 import './loginpage.css'; 
 
-export default function SignUp() {
+export default function SignUp(props) {
     const [ loading, setLoading ] = useState(false);
     //return from the custom hook 
     // set curretn user auth in the firebaser
@@ -11,14 +11,26 @@ export default function SignUp() {
 
     const emailRef = useRef();
     const passwordRef = useRef();
+    const passwordConfirmationRef = useRef();
+    const nameRef = useRef(); 
     // we made this async signup is gonna retun a prom as it in the retunr create
 
   
     async function handleSignup() {
-        await signup(emailRef.current.value, passwordRef.current.value);
+      setLoading(true);
+      if (passwordRef.current.value === passwordConfirmationRef.current.value) {
+
+        await signup(emailRef.current.value, passwordRef.current.value );
     
         setLoading(false);
+        
+        props.history.push("/home")
     }
+
+    
+        
+    }
+
 
     return (
       <form>
@@ -27,15 +39,11 @@ export default function SignUp() {
         <div className="mb-3">
           <label>First name</label>
           <input
+          
             type="text"
             className="form-control"
             placeholder="First name"
           />
-        </div>
-
-        <div className="mb-3">
-          <label>Last name</label>
-          <input type="text" className="form-control" placeholder="Last name" />
         </div>
 
         <div className="mb-3">
@@ -53,6 +61,16 @@ export default function SignUp() {
           <input
             
             ref={passwordRef}
+            type="password"
+            className="form-control"
+            placeholder="Enter password"
+          />
+        </div>
+        <div className="mb-3">
+          <label>Confirm Password</label>
+          <input
+            
+            ref={passwordConfirmationRef}
             type="password"
             className="form-control"
             placeholder="Enter password"
