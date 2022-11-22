@@ -13,6 +13,7 @@ const IndexDisplay = ({prescriptions = [{drug_name: "Hello"}] , handleEdit}) =>{
                 </div>
                 )
             })}
+            <button></button>
         </div>
     )
 }
