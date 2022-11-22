@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-const IndexDisplay = ({prescriptions = [{drug_name: "Hello"}] , handleEdit}) =>{
+const IndexDisplay = ({prescriptions = [{drug_name: "Hello"}] , toNew, toUpdate}) =>{
     // const prescriptions = props.data
     console.log(prescriptions)
     return(
@@ -9,11 +9,11 @@ const IndexDisplay = ({prescriptions = [{drug_name: "Hello"}] , handleEdit}) =>{
                 return (
                 <div key={prescription.div}>
                     <h1>Drug Name: { prescription.drug_name }</h1>
-                    <button onClick={ event => handleEdit(prescription)}>Edit Prescription</button>
+                    <button onClick={ event => toUpdate(prescription)}>Edit Prescription</button>
                 </div>
                 )
             })}
-            <button></button>
+            <button onClick={toNew} >New</button>
         </div>
     )
 }
