@@ -13,9 +13,7 @@ const PrescriptionIndex = () => {
             const data = await getDocs(prescriptionsCollectionRef);
             setPrescription(data.docs.map((doc) => ({...doc.data(), id: doc.id })));
         }
-        
         getPrescriptions();
-
     }, []);
 
         return (
@@ -28,7 +26,7 @@ const PrescriptionIndex = () => {
                         {console.log(prescription)}
                         <Link to={`/prescriptions/update/${prescription.id}`}>Edit Prescription</Link>
                     </div>
-)
+                    )
                     })}
 
             </div>

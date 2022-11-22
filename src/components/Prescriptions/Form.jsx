@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useState } from 'react';
 
@@ -10,9 +9,6 @@ const Form = ({returnValues, data={} })=>{
     const [dosesPerDay, setDosesPerDay] = useState('');
     const [dosesPerRefill, setDosesPerRefill] = useState('');
     const [refillDay, setRefillDay] = useState('');
-
-
-
     return(
         <div className="form">
             <input type="text" placeholder="Drug Name" onChange={(event)=>{setDrugName(event.target.value)}} />

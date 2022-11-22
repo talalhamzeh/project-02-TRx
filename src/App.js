@@ -1,20 +1,14 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 // to get the result from the input we use useref 
-import { useRef, useState } from "react";
-import { signup, login ,logout ,useAuth} from "./components/Login/firebase"; 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Banner from "./components/Banner";
 import HomePage from "./components/Home/HomePage";
+import CombinedPrescription from "./components/Prescriptions/CombinedPrescription"
 import LoginPage from "./components/Login/LoginPage";
-import SideNavbar from "./components/Home/SideNavbar";
 import Navbar from "./components/Home/Navbar";
 import MedicationIndex from "./components/Medication/MedicationIndex";
-import CreateJournal from "./components/Journals/CreateJournal";
 import JournalIndex from "./components/Journals/JournalIndex";
-import CreatePrescription from "./components/Prescriptions/CreatePrescription";
-import PrescriptionIndex from "./components/Prescriptions/PrescriptionIndex";
-import EditPrescription from "./components/Prescriptions/EditPrescription";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -29,7 +23,7 @@ export default function App() {
   return (
     
     <Router>
-      <Navbar />
+    <div class="main">
       <Row>
         <Col class=".col-12"><Banner /></Col>
         <Col class=".col-6"><Navbar /></Col>
@@ -37,8 +31,12 @@ export default function App() {
       <Switch>
         <Route exact path="/home" component={HomePage} />
       </Switch>
+      <Switch>
+            <Route path="/prescriptions" component={CombinedPrescription} />
+          </Switch>
       <div className="auth-wrapper">
           <div className="auth-inner">
+<<<<<<< HEAD
             <Switch>
               <Route path="/login" component={Login} />
             </Switch>
@@ -65,6 +63,23 @@ export default function App() {
             </Switch>
           </div> 
         </div>
+=======
+          <Switch>
+            <Route path="/login" component={Login} />
+          </Switch>
+          <Switch>
+            <Route path="/signup" component={Signup} />
+          </Switch>
+          <Switch>
+            <Route path="/medications" component={MedicationIndex} />
+          </Switch>
+          <Switch>
+            <Route path="/journals" component={JournalIndex} />
+          </Switch>
+          </div> 
+      </div> 
+    </div>
+>>>>>>> fe75070fd7e71fb31f15a66bdbc796c402970365
     </Router>
     
     
