@@ -9,8 +9,8 @@ import { useEffect, useState } from "react";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBmVEP2--9J6KGUXiuT2pT6JEPeqtYaEcE",
-  authDomain: "trx-auth.firebaseapp.com",
+  apiKey: `${process.env.REACT_APP_API_KEY}`,
+  authDomain: `${process.env.REACT_APP_AUTH_DOMAIN}`,
   projectId: "trx-auth",
   storageBucket: "trx-auth.appspot.com",
   messagingSenderId: "104093916884",
