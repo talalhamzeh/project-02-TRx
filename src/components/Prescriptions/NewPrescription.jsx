@@ -2,7 +2,7 @@ import React from 'react'
 import Form from "./Form"
 import { db } from '../Login/firebase';
 import { collection, addDoc } from 'firebase/firestore';
-const NewPrescription = ({getPrescriptions})=>{
+const NewPrescription = ({toIndex})=>{
     const prescriptionsCollectionRef = collection(db, "Prescriptions");
     const createPrescription = async(data) =>{
         await addDoc(prescriptionsCollectionRef,data)
@@ -10,7 +10,7 @@ const NewPrescription = ({getPrescriptions})=>{
     const returnValues = (data) => {
         console.log(data)
         createPrescription(data)
-        getPrescriptions()
+        toIndex()
     }
     return(
         <div className="createPrescription">

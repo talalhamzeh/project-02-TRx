@@ -5,21 +5,18 @@ import { collection, getDocs } from 'firebase/firestore';
 import { Link } from 'react-router-dom'
 import NewPrescription from './NewPrescription';
 import { useAuth} from "../Login/firebase"; 
+import UpdatePrescription from './UpdatePrescription'
 
 
 const CombinedPrescription = (props)=>{
     const currentUser = useAuth(); 
+    const [prescription,setPrescription]= useState({})
     const [indexState, setIndexState] = useState(true)
     const [newState, setNewState] = useState(false)
-    const [updatestate, setUpdateState] = useState(false)
+    const [updateState, setUpdateState] = useState(false)
     const [showState, setShowState] = useState(false)
     const [prescriptions, setPrescriptions] = useState([]);
     const prescriptionsCollectionRef = collection(db, "Prescriptions");
-    const [display,setDisplay] = useState()
-
-    const handleNew=()=>{
-        setDisplay([<NewPrescription getPrescriptions={getPrescriptions}/>])
-    }
 
     const getPrescriptions = async () => {
         const data = await getDocs(prescriptionsCollectionRef);
@@ -42,11 +39,13 @@ const CombinedPrescription = (props)=>{
         setUpdateState(false);
         setShowState(false)
     }
-    const toUpdate = () => {
+    const toUpdate = (prescription) => {
+        setPrescription(prescription)
+        console.log(prescription)
         setIndexState(false);
         setNewState(false);
         setUpdateState(true);
-        setShowState(false)
+        setShowState(false);
     }
 
     // if (!currentUser){
@@ -68,7 +67,14 @@ const CombinedPrescription = (props)=>{
     }
 
     if (newState){
-        <NewPrescription toIndex={toIndex}/>
+        return(
+            <NewPrescription toIndex={toIndex}/>
+        )
+    }
+    if(updateState){
+        return (
+            <UpdatePrescription prescription={prescription} toIndex={toIndex}/>
+        )
     }
 
 

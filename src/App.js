@@ -48,20 +48,8 @@ export default function App() {
             <Switch>
               <Route path="/journals" component={JournalIndex} />
             </Switch>
-            {/* <Switch>
-              <Route path="/journals/new" component={CreateJournal} />
-            </Switch>
-            <Switch>
-              <Route path="/prescriptions" component={PrescriptionIndex} />
-            </Switch>
-            <Switch>
-              <Route path="/prescriptions/new" component={CreatePrescription} />
-            </Switch>
-            <Switch>
-              <Route path="/prescriptions/update/:id" component={EditPrescription} />
-            </Switch> */}
+          </div>
           </div> 
-        </div>
         </div>
     </Router>
     
