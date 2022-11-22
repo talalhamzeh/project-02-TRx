@@ -1,10 +1,10 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
-// to get the result from the input we use useref 
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
+// to get the result from the input we use useref
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Banner from "./components/Banner";
 import HomePage from "./components/Home/HomePage";
-import CombinedPrescription from "./components/Prescriptions/CombinedPrescription"
+import CombinedPrescription from "./components/Prescriptions/CombinedPrescription";
 import LoginPage from "./components/Login/LoginPage";
 import Navbar from "./components/Home/Navbar";
 import MedicationIndex from "./components/Medication/MedicationIndex";
@@ -18,23 +18,25 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 
 
 
-
 export default function App() {
   return (
-    
     <Router>
-    <div class="main">
-      <Row>
-        <Col class=".col-12"><Banner /></Col>
-        <Col class=".col-6"><Navbar /></Col>
-      </Row>
-      <Switch>
-        <Route exact path="/home" component={HomePage} />
-      </Switch>
-      <Switch>
-            <Route path="/prescriptions" component={CombinedPrescription} />
-          </Switch>
-      <div className="auth-wrapper">
+      <div class="main">
+        <Row>
+          <Col class=".col-12">
+            <Banner />
+          </Col>
+          <Col class=".col-6">
+            <Navbar />
+          </Col>
+        </Row>
+        <Switch>
+          <Route exact path="/home" component={HomePage} />
+        </Switch>
+        <Switch>
+          <Route path="/prescriptions" component={CombinedPrescription} />
+        </Switch>
+        <div className="auth-wrapper">
           <div className="auth-inner">
             <Switch>
               <Route path="/login" component={Login} />
@@ -48,24 +50,16 @@ export default function App() {
             <Switch>
               <Route path="/journals" component={Journals} />
             </Switch>
-            {/* <Switch>
-              <Route path="/journals/new" component={CreateJournal} />
-            </Switch>
             <Switch>
-              <Route path="/prescriptions" component={PrescriptionIndex} />
+              <Route
+                exact
+                path="/medications/neww"
+                component={CreateMedication}
+              />
             </Switch>
-            <Switch>
-              <Route path="/prescriptions/new" component={CreatePrescription} />
-            </Switch>
-            <Switch>
-              <Route path="/prescriptions/update/:id" component={EditPrescription} />
-            </Switch> */}
-          </div> 
+          </div>
         </div>
-        </div>
+      </div>
     </Router>
-    
-    
   );
-};
-
+}
