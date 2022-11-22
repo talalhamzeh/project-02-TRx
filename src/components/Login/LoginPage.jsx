@@ -42,7 +42,7 @@ export default function LoginPage() {
                 <input ref={passwordRef} type="password" placeholder="Password" />
             </div>
             <button disabled={ loading || currentUser } onClick={handleSignup}>Sign Up</button>
-            <button disabled={ loading || !currentUser } onClick={handleLogin}>Log In</button>
+            <button disabled={ loading || currentUser } onClick={handleLogin}>Log In</button>
             <button disabled={ loading || !currentUser } onClick={handleLogout}>Log Out</button>
         </div>
     );
