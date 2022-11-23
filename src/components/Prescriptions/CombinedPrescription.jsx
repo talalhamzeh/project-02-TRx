@@ -15,8 +15,9 @@ const CombinedPrescription = (props)=>{
     const [updateState, setUpdateState] = useState(false)
     const [showState, setShowState] = useState(false)
     const [prescriptions, setPrescriptions] = useState([]);
-    const prescriptionsCollectionRef = collection(db, "Prescriptions");
 
+
+    const prescriptionsCollectionRef = collection(db, "Prescriptions");
     const getPrescriptions = async () => {
         const data = await getDocs(prescriptionsCollectionRef);
         setPrescriptions(data.docs.map((doc) => ({...doc.data(), id: doc.id })));

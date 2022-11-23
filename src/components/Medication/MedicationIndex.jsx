@@ -10,7 +10,7 @@ const MedicationIndex = () => {
   useEffect(() => {
     const getMedications = async () => {
       const data = await getDocs(medicationsCollectionRef);
-      console.log(data.docs);
+
       setMedications(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
 
@@ -22,7 +22,7 @@ const MedicationIndex = () => {
       {medications.map((medication) => {
         return (
           <div>
-            <h1>Name: {medication.brand_name}</h1>
+            <h1>Name: {medication.brandName}</h1>
           </div>
         );
       })}

@@ -6,6 +6,7 @@ import NewJournal from './NewJournal';
 import { useAuth} from "../Login/firebase"; 
 import UpdateJournal from './UpdateJournal'
 
+
 const Journals = (props)=>{
     const currentUser = useAuth(); 
     const [journal,setJournal]= useState({})
@@ -14,8 +15,9 @@ const Journals = (props)=>{
     const [updateState, setUpdateState] = useState(false)
     const [showState, setShowState] = useState(false)
     const [journals, setJournals] = useState([]);
-    const journalsCollectionRef = collection(db, "Journal");
 
+
+    const journalsCollectionRef = collection(db, "Journal");
     const getJournals = async () => {
         const data = await getDocs(journalsCollectionRef);
         setJournals(data.docs.map((doc) => ({...doc.data(), id: doc.id })));
