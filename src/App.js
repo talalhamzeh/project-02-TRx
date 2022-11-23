@@ -1,14 +1,14 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
-// to get the result from the input we use useref 
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
+// to get the result from the input we use useref
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Banner from "./components/Banner";
 import HomePage from "./components/Home/HomePage";
-import CombinedPrescription from "./components/Prescriptions/CombinedPrescription"
+import CombinedPrescription from "./components/Prescriptions/CombinedPrescription";
 import LoginPage from "./components/Login/LoginPage";
 import Navbar from "./components/Home/Navbar";
 import MedicationIndex from "./components/Medication/MedicationIndex";
-import JournalIndex from "./components/Journals/JournalIndex";
+import Journals from "./components/Journals/Journals";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -20,10 +20,8 @@ import IndexDisplay from './components/Prescriptions/IndexDisplay';
 
 
 
-
 export default function App() {
   return (
-    
     <Router>
     <div class="main">
       <Row>
@@ -53,15 +51,19 @@ export default function App() {
               <Route path="/medications" component={MedicationIndex} />
             </Switch>
             <Switch>
-              <Route path="/journals" component={JournalIndex} />
+              <Route path="/journals" component={Journals} />
+            </Switch>
+            <Switch>
+              <Route
+                exact
+                path="/medications/new"
+                component={CreateMedication}
+              />
             </Switch>
 
           </div>
-          </div> 
         </div>
+      </div>
     </Router>
-    
-    
   );
-};
-
+}

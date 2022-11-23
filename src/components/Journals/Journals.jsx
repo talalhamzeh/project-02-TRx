@@ -2,28 +2,27 @@ import IndexDisplay from './IndexDisplay'
 import { useState, useEffect } from 'react';
 import { db } from '../Login/firebase';
 import { collection, getDocs } from 'firebase/firestore';
-import NewPrescription from './NewPrescription';
+import NewJournal from './NewJournal';
 import { useAuth} from "../Login/firebase"; 
-import UpdatePrescription from './UpdatePrescription'
-import axios  from 'axios';
+import UpdateJournal from './UpdateJournal'
 
-const CombinedPrescription = (props)=>{
+const Journals = (props)=>{
     const currentUser = useAuth(); 
-    const [prescription,setPrescription]= useState({})
+    const [journal,setJournal]= useState({})
     const [indexState, setIndexState] = useState(true)
     const [newState, setNewState] = useState(false)
     const [updateState, setUpdateState] = useState(false)
     const [showState, setShowState] = useState(false)
-    const [prescriptions, setPrescriptions] = useState([]);
-    const prescriptionsCollectionRef = collection(db, "Prescriptions");
+    const [journals, setJournals] = useState([]);
+    const journalsCollectionRef = collection(db, "Journal");
 
-    const getPrescriptions = async () => {
-        const data = await getDocs(prescriptionsCollectionRef);
-        setPrescriptions(data.docs.map((doc) => ({...doc.data(), id: doc.id })));
+    const getJournals = async () => {
+        const data = await getDocs(journalsCollectionRef);
+        setJournals(data.docs.map((doc) => ({...doc.data(), id: doc.id })));
     }
 
     useEffect(() => {
-        getPrescriptions()
+        getJournals()
     },[]);
 
     const toIndex = ()=>{
@@ -38,23 +37,24 @@ const CombinedPrescription = (props)=>{
         setUpdateState(false);
         setShowState(false)
     }
-    const toUpdate = (prescription) => {
-        setPrescription(prescription)
-        console.log(prescription)
+    const toUpdate = (journal) => {
+        setPrescription(journal)
+        console.log(journal)
         setIndexState(false);
         setNewState(false);
         setUpdateState(true);
         setShowState(false);
     }
+
     // if (!currentUser){
     //     // add redirect to login page.
     //     props.history.push("/login")
     // }
-    if (indexState && prescriptions.length>0){
-        console.log(prescriptions ,prescriptions.length)
+    if (indexState && journals.length>0){
+        console.log(journals ,journals.length)
         return(
 
-            <IndexDisplay prescriptions={prescriptions} toNew={toNew} toUpdate={toUpdate}/>
+            <IndexDisplay journals={journals} toNew={toNew} toUpdate={toUpdate}/>
 
         )
     }
@@ -66,16 +66,14 @@ const CombinedPrescription = (props)=>{
 
     if (newState){
         return(
-            <NewPrescription toIndex={toIndex}/>
+            <NewJournal toIndex={toIndex}/>
         )
     }
     if(updateState){
         return (
-            <UpdatePrescription prescription={prescription} toIndex={toIndex}/>
+            <UpdateJournal prescription={prescription} toIndex={toIndex}/>
         )
     }
-
-
 }
 
-export default CombinedPrescription
+export default Journals

@@ -35,5 +35,10 @@ const UpdatePrescription = ({prescription, toIndex})=>{
     )
 
 }
+<<<<<<< HEAD
 export default UpdatePrescription
 
+=======
+
+export default UpdatePrescription
+>>>>>>> 4be7032ef5f88ec7a1dd89da443cd7ad933836dc
