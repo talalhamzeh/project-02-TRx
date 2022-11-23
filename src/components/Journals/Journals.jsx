@@ -38,7 +38,7 @@ const Journals = (props)=>{
         setShowState(false)
     }
     const toUpdate = (journal) => {
-        setPrescription(journal)
+        setJournal(journal)
         console.log(journal)
         setIndexState(false);
         setNewState(false);
@@ -71,7 +71,7 @@ const Journals = (props)=>{
     }
     if(updateState){
         return (
-            <UpdateJournal prescription={prescription} toIndex={toIndex}/>
+            <UpdateJournal journal={journal} toIndex={toIndex}/>
         )
     }
 }

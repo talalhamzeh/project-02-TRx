@@ -53,8 +53,10 @@ const CombinedPrescription = (props)=>{
     if (indexState && prescriptions.length>0){
         console.log(prescriptions ,prescriptions.length)
         return(
-
-            <IndexDisplay prescriptions={prescriptions} toNew={toNew} toUpdate={toUpdate}/>
+            <div>
+                <h1>hello</h1>
+                <IndexDisplay prescriptions={prescriptions} toNew={toNew} toUpdate={toUpdate}/>
+            </div>
 
         )
     }

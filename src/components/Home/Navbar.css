@@ -29,3 +29,7 @@ span {
 .nav-link:hover {
     color: #bfbfbf;
 }
+
+.navbar-brand:hover {
+    color: #bfbfbf;
+}

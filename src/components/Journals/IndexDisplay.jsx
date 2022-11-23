@@ -4,7 +4,7 @@ const IndexDisplay = ({journal , toNew, toUpdate}) =>{
     console.log(journal)
     return(
         <div className="index">
-            {journals.map((journal) => { 
+            {journal.map((journal) => { 
                 return (
                 <div key={journal.div}>
                     <h1>Drug Name: { journal.content }</h1>
