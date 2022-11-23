@@ -8,6 +8,7 @@ const IndexDisplay = ({prescriptions = [{drug_name: "Hello"}] , toNew, toUpdate}
             {prescriptions.map((prescription) => { 
                 return (
                 <div key={prescription.div}>
+                    <h1 onClick= {event => toShow(prescription) } >{ prescription.drug_name } </h1>
                     <h1>Drug Name: { prescription.drug_name }</h1>
 
                     
@@ -21,5 +22,3 @@ const IndexDisplay = ({prescriptions = [{drug_name: "Hello"}] , toNew, toUpdate}
 }
 export default IndexDisplay
 
-
-{/* < Link to={"update/" + prescription.id } >Edit Prescription</Link> */}
