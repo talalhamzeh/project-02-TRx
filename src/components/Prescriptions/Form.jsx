@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from "react";
-
+import { propTypes } from "react-bootstrap/esm/Image";
+import { Link } from "react-router-dom";
+import CombinedPrescription from "./CombinedPrescription";
 const Form = ({ returnValues, data = {} }) => {
   const [drugName, setDrugName] = useState("");
   const [dosage, setDosage] = useState("");
@@ -12,6 +14,7 @@ const Form = ({ returnValues, data = {} }) => {
   return (
     <div className="form">
       <input
+        defaultValue={data.drug_name}
         type="text"
         placeholder="Drug Name"
         onChange={(event) => {
@@ -19,6 +22,7 @@ const Form = ({ returnValues, data = {} }) => {
         }}
       />
       <input
+        defaultValue={data.dosage_history}
         type="text"
         placeholder="Dosage"
         onChange={(event) => {
@@ -26,6 +30,7 @@ const Form = ({ returnValues, data = {} }) => {
         }}
       />
       <input
+        defaultValue={data.refills}
         type="text"
         placeholder="Number of refills"
         onChange={(event) => {
@@ -33,6 +38,7 @@ const Form = ({ returnValues, data = {} }) => {
         }}
       />
       <input
+        defaultValue={data.daily_dosage}
         type="text"
         placeholder="Daily Doses"
         onChange={(event) => {
@@ -40,6 +46,7 @@ const Form = ({ returnValues, data = {} }) => {
         }}
       />
       <input
+        defaultValue={data.dose_strength}
         type="text"
         placeholder="Doses per refill"
         onChange={(event) => {
@@ -47,6 +54,8 @@ const Form = ({ returnValues, data = {} }) => {
         }}
       />
       <input
+
+        defaultValue={data.refill_date}
         type="date"
         placeholder="Refill date"
         onChange={(event) => {
@@ -56,6 +65,7 @@ const Form = ({ returnValues, data = {} }) => {
 
       <button
         onClick={(event) =>
+
           returnValues(
             { drug_name: drugName,
              dosage_history: dosage,
@@ -63,12 +73,17 @@ const Form = ({ returnValues, data = {} }) => {
              daily_dosage: dosesPerDay,
              dose_strength: dosesPerRefill,
              refill_date: refillDate }
-          )
+             
+          ) 
+          
+
+
         }
       >
-        Create Prescription
+        { data.drug_name?  "Update" :"Create" } Prescription
       </button>
-    </div>
+      
+          </div>
   );
 };
 export default Form;
