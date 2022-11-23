@@ -5,55 +5,46 @@ import axios from "axios";
 
 const CreateMedication = () => {
   const [newMedication, setNewMedication] = useState("");
-  const [medicationData, setMedicationData] = useState({});
-  const [medicationDataTwo, setMedicationDataTwo] = useState({});
-  const [error, setError] = useState("");
-  const [loaded, setLoaded] = useState(false);
+  const [name, setName] = useState("");
   const medicationsCollectionRef = collection(db, "Medications");
 
-  const createMedication = async () => {
-    await addDoc(medicationsCollectionRef, {
-      ...medicationData,
+  let medicationData = {};
+  let medicationDataTwo = {};
+
+  const createMedication = () => {
+    addDoc(medicationsCollectionRef, {
       ...medicationDataTwo,
+      ...medicationData,
     });
   };
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const response = await axios.get(
-          "https://api.fda.gov/drug/drugsfda.json?api_key=m6seTV1TNrDCgSzAhuXtaSPo5PUYWRXKkO24SPWa&search=zoloft"
-        );
-        setMedicationDataTwo({
-          brandName: response.data.results[0].openfda.brand_name[0],
-          genericName: response.data.results[0].openfda.generic_name[0],
-        });
-        console.log(response.data.results[0].openfda);
-      } catch (error) {
-        setError(error.message);
-        console.log(error);
-      } finally {
-        setLoaded(true);
-      }
-    })();
+  const promiseOne = axios
+    .get(
+      `https://api.fda.gov/drug/drugsfda.json?api_key=m6seTV1TNrDCgSzAhuXtaSPo5PUYWRXKkO24SPWa&search=${name}`
+    )
+    .then((response) => {
+      medicationData = {
+        brandName: response.data.results[0].openfda.brand_name[0],
+        genericName: response.data.results[0].openfda.generic_name[0],
+      };
+    });
 
-    (async () => {
-      try {
-        const response = await axios.get(
-          "https://api.fda.gov/drug/label.json?api_key=m6seTV1TNrDCgSzAhuXtaSPo5PUYWRXKkO24SPWa&search=zoloft"
-        );
-        setMedicationData({
-          adverseEffects: response.data.results[0].adverse_reactions[0],
-          description: response.data.results[0].description[0],
-        });
-        console.log(response.data.results[0]);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoaded(true);
-      }
-    })();
-  }, []);
+  const promiseTwo = axios
+    .get(
+      `https://api.fda.gov/drug/label.json?api_key=m6seTV1TNrDCgSzAhuXtaSPo5PUYWRXKkO24SPWa&search=${name}`
+    )
+    .then((response) => {
+      medicationDataTwo = {
+        adverseEffects: response.data.results[0].adverse_reactions[0],
+        description: response.data.results[0].description[0],
+      };
+    });
+
+  const _handleNew = () => {
+    Promise.all([promiseOne, promiseTwo]).then(() => {
+      createMedication();
+    });
+  };
 
   return (
     <div className="createMedication">
@@ -61,10 +52,10 @@ const CreateMedication = () => {
         type="text"
         placeholder="Medication Name"
         onChange={(event) => {
-          setNewMedication(event.target.value);
+          setName(event.target.value);
         }}
       />
-      <button onClick={createMedication}>Create Medication</button>
+      <button onClick={_handleNew}>Create Medication</button>
     </div>
   );
 };

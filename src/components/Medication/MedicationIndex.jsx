@@ -1,11 +1,27 @@
 import { useState, useEffect } from "react";
 import { db } from "../Login/firebase";
 import { collection, getDocs } from "firebase/firestore";
+import ShowMedication from "./ShowMedication";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 const MedicationIndex = () => {
   const [medications, setMedications] = useState([]);
+  const [indexState, setIndexState] = useState(true);
+  const [showState, setShowState] = useState(false);
+  const [medication, setMedication] = useState({});
   const medicationsCollectionRef = collection(db, "Medications");
+
+  const toIndex = () => {
+    setIndexState(true);
+    setShowState(false);
+  };
+
+  const toShow = (medication) => {
+    setIndexState(false);
+    setShowState(true);
+    setMedication(medication);
+  };
 
   useEffect(() => {
     const getMedications = async () => {
@@ -22,7 +38,7 @@ const MedicationIndex = () => {
       {medications.map((medication) => {
         return (
           <div>
-            <h1>Name: {medication.brandName}</h1>
+            <h1>Name: {medication.brand_name}</h1>
           </div>
         );
       })}
