@@ -52,7 +52,7 @@ export default function App() {
             <Switch>
               <Route
                 exact
-                path="/medications/neww"
+                path="/medications/new"
                 component={CreateMedication}
               />
             </Switch>
