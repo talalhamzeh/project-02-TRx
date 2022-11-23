@@ -21,8 +21,6 @@ import UpdatePrescription from './components/Prescriptions/UpdatePrescription';
 import IndexDisplay from './components/Prescriptions/IndexDisplay';
 import CreateMedication from "./components/Medication/CreateMedication";
 
-import CreateMedication from "./components/Medication/MedicationIndex";
-
 export default function App() {
   return (
 
