@@ -2,7 +2,6 @@ import React from 'react';
 import { db } from '../Login/firebase';
 import { doc , setDoc } from 'firebase/firestore';
 import Form from "./Form"
-import PrescriptionIndex from './PrescriptionIndex';
 
 const UpdatePrescription = ({prescription, toIndex})=>{
     const returnValues=(updatedValues)=>{
@@ -35,10 +34,5 @@ const UpdatePrescription = ({prescription, toIndex})=>{
     )
 
 }
-<<<<<<< HEAD
 export default UpdatePrescription
 
-=======
-
-export default UpdatePrescription
->>>>>>> 4be7032ef5f88ec7a1dd89da443cd7ad933836dc

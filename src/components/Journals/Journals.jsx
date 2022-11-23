@@ -6,6 +6,7 @@ import NewJournal from './NewJournal';
 import { useAuth} from "../Login/firebase"; 
 import UpdateJournal from './UpdateJournal'
 
+
 const Journals = (props)=>{
     const currentUser = useAuth(); 
     const [journal,setJournal]= useState({})

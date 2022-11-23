@@ -18,7 +18,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import UpdatePrescription from './components/Prescriptions/UpdatePrescription';
 import IndexDisplay from './components/Prescriptions/IndexDisplay';
 
-
+import CreateMedication from "./components/Medication/MedicationIndex";
 
 export default function App() {
   return (

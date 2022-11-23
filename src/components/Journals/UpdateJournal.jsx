@@ -1,7 +1,6 @@
 
 import { db } from '../Login/firebase';
 import { doc , setDoc } from 'firebase/firestore';
-import Form from "./Form"
 
 const UpdateJournal = ({journal, toIndex})=>{
     const returnValues=(updatedValues)=>{

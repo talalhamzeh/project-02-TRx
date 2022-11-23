@@ -1,5 +1,5 @@
 import React from 'react'
-import Form from "./Form"
+import Form from '../Prescriptions/Form';
 import { db } from '../Login/firebase';
 import { collection, addDoc } from 'firebase/firestore';
 const NewJournal = ({toIndex})=>{
