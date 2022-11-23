@@ -16,6 +16,9 @@ const NewPrescription = ({toIndex})=>{
         <div className="createPrescription">
             <h1>New Prescription</h1>
             <Form returnValues={returnValues}/>
+            <button onClick={event=> toIndex() } >Back</button>
+
+
         </div>
     )
 }

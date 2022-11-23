@@ -6,6 +6,7 @@ import NewPrescription from './NewPrescription';
 import { useAuth} from "../Login/firebase"; 
 import UpdatePrescription from './UpdatePrescription'
 import axios  from 'axios';
+import Show from './Show'
 
 const CombinedPrescription = (props)=>{
     const currentUser = useAuth(); 
@@ -38,6 +39,13 @@ const CombinedPrescription = (props)=>{
         setUpdateState(false);
         setShowState(false)
     }
+    
+    const toShow = () => {
+        setIndexState(false);
+        setNewState(false);
+        setUpdateState(false);
+        setShowState(true)
+    }
     const toUpdate = (prescription) => {
         setPrescription(prescription)
         console.log(prescription)
@@ -55,7 +63,7 @@ const CombinedPrescription = (props)=>{
         return(
             <div>
                 <h1>hello</h1>
-                <IndexDisplay prescriptions={prescriptions} toNew={toNew} toUpdate={toUpdate}/>
+                <IndexDisplay prescriptions={prescriptions} toShow={toShow} toNew={toNew} toUpdate={toUpdate}/>
             </div>
 
         )
@@ -74,6 +82,12 @@ const CombinedPrescription = (props)=>{
     if(updateState){
         return (
             <UpdatePrescription prescription={prescription} toIndex={toIndex}/>
+        )
+    }
+    if (showState){
+        return (
+            <Show prescription={prescription} toShow={toShow}/>
+
         )
     }
 

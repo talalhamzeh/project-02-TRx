@@ -7,6 +7,7 @@ const UpdateJournal = ({journal, toIndex})=>{
     const returnValues=(updatedValues)=>{
         const docRef = doc(db, "Journal", journal.id)
         setDoc(docRef,updatedValues)
+        toIndex()
     }
     return (
         <div>

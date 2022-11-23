@@ -27,7 +27,7 @@ const MedicationIndex = () => {
   useEffect(() => {
     const getMedications = async () => {
       const data = await getDocs(medicationsCollectionRef);
-      console.log(data.docs);
+
       setMedications(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
 
@@ -54,6 +54,7 @@ const MedicationIndex = () => {
     return <ShowMedication toIndex={toIndex} medication={medication} />;
   }
 };
+
 // const fetchMedicationData = () => {
 //   const [medicationData, setMedicationData] = useState({});
 //   const [medicationDataTwo, setMedicationDataTwo] = useState({});

@@ -74,6 +74,10 @@ const Journals = (props) => {
   if (updateState) {
     return <UpdateJournal journal={journal} toIndex={toIndex} />;
   }
+
+  if (showState) {
+    return <ShowJournal journal={journal} toIndex={toIndex} />;
+  }
 };
 
 export default Journals;
