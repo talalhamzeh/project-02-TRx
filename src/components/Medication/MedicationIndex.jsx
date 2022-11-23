@@ -38,7 +38,7 @@ const MedicationIndex = () => {
       {medications.map((medication) => {
         return (
           <div>
-            <h1>Name: {medication.brand_name}</h1>
+            <h1>Name: {medication.brandName}</h1>
           </div>
         );
       })}

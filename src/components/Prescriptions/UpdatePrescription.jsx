@@ -2,11 +2,13 @@ import React from 'react';
 import { db } from '../Login/firebase';
 import { doc , setDoc } from 'firebase/firestore';
 import Form from "./Form"
+import { useAuth} from "../Login/firebase"; 
 
 const UpdatePrescription = ({prescription, toIndex})=>{
+    const currentUser = useAuth(); 
     const returnValues=(updatedValues)=>{
         const docRef = doc(db, "Prescriptions", prescription.id)
-        setDoc(docRef,updatedValues)
+        setDoc(docRef,{...updatedValues, UID: currentUser.uid})
     }
 
     return (
