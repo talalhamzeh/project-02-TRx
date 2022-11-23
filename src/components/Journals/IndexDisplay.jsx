@@ -1,10 +1,10 @@
 import React from "react";
-const IndexDisplay = ({ journal, toNew, toUpdate }) => {
+const IndexDisplay = ({ journals, toNew, toUpdate }) => {
   // const prescriptions = props.data
-  console.log(journal);
+  console.log(journals);
   return (
     <div className="index">
-      {journal.map((journal) => {
+      {journals.map((journal) => {
         return (
           <div key={journal.div}>
             <h1 onClick={(event) => journal.id}>

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import IndexDisplay from "./IndexDisplay";
 import { useState, useEffect } from "react";
 import { db } from "../Login/firebase";
@@ -7,17 +6,7 @@ import NewJournal from "./NewJournal";
 import { useAuth } from "../Login/firebase";
 import UpdateJournal from "./UpdateJournal";
 import ShowJournal from "./ShowJournal"
-=======
-import IndexDisplay from './IndexDisplay'
-import { useState, useEffect } from 'react';
-import { db } from '../Login/firebase';
-import { collection, getDocs } from 'firebase/firestore';
-import NewJournal from './NewJournal';
-import { useAuth} from "../Login/firebase"; 
-import UpdateJournal from './UpdateJournal';
-import Login from '../Login/Login'
->>>>>>> f4df6c056d8beb1bdbd2a2d360be53078d1f2ffe
-
+import Login from "../Login/Login";
 
 const Journals = (props)=>{
 
@@ -90,3 +79,4 @@ const Journals = (props)=>{
         )
     }
 }
+export default Journals ;
