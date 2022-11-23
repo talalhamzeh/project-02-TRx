@@ -4,6 +4,7 @@ import { collection, getDocs } from "firebase/firestore";
 import ShowMedication from "./ShowMedication";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import "./medication.css";
 
 const MedicationIndex = () => {
   const [medications, setMedications] = useState([]);
@@ -39,8 +40,8 @@ const MedicationIndex = () => {
         {medications.map((medication) => {
           return (
             <div>
-              <span onClick={(event) => toShow(medication)}>
-                Name: {medication.brandName}
+              <span onClick={(event) => toShow(medication)} class="medication">
+                {medication.brandName}
               </span>
             </div>
           );

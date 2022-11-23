@@ -9,7 +9,7 @@ import "./medication.css";
 
 const ShowMedication = ({ toIndex, medication }) => {
   return (
-    <Card sx={{ maxWidth: 345 }} class="center">
+    <Card sx={{ maxWidth: 345 }} class="center" variant="outlined">
       <CardMedia
         component="img"
         alt="prescribed pills"
