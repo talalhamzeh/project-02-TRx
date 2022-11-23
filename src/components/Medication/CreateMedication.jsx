@@ -6,7 +6,19 @@ import axios from "axios";
 const CreateMedication = () => {
   const [newMedication, setNewMedication] = useState("");
   const [name, setName] = useState("");
+  const [error, setError] = useState("");
+  const [medications, setMedications] = useState({});
   const medicationsCollectionRef = collection(db, "Medications");
+
+  useEffect(() => {
+    const getMedications = async () => {
+      const data = await getDocs(medicationsCollectionRef);
+      console.log(data.docs);
+      setMedications(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    };
+
+    getMedications();
+  }, []);
 
   let medicationData = {};
   let medicationDataTwo = {};
@@ -42,7 +54,17 @@ const CreateMedication = () => {
 
   const _handleNew = () => {
     Promise.all([promiseOne, promiseTwo]).then(() => {
-      createMedication();
+      console.log(medications);
+      let medicationsBrandName = [];
+      for (let i = 0; i < medications.length; i++) {
+        medicationsBrandName.push(medications[i].brandName);
+      }
+      console.log(medicationsBrandName);
+      if (medicationsBrandName.includes(medicationData.brandName)) {
+        setError("Already in database.");
+      } else {
+        createMedication();
+      }
     });
   };
 
@@ -56,6 +78,9 @@ const CreateMedication = () => {
         }}
       />
       <button onClick={_handleNew}>Create Medication</button>
+      <div className="errors">
+        <p>{error}</p>
+      </div>
     </div>
   );
 };

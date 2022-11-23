@@ -79,5 +79,3 @@ const Journals = (props)=>{
         )
     }
 }
-
-export default Journals
