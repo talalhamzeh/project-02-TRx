@@ -8,14 +8,15 @@ import CombinedPrescription from "./components/Prescriptions/CombinedPrescriptio
 import LoginPage from "./components/Login/LoginPage";
 import Navbar from "./components/Home/Navbar";
 import MedicationIndex from "./components/Medication/MedicationIndex";
-import CreateMedication from "./components/Medication/CreateMedication";
-import JournalIndex from "./components/Journals/JournalIndex";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Login from "./components/Login/Login";
-import Signup from "./components/Login/SignUp";
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import Journals from "./components/Journals/Journals";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Login from './components/Login/Login';
+import Signup from './components/Login/SignUp';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+
+
 
 export default function App() {
   return (
@@ -47,7 +48,7 @@ export default function App() {
               <Route path="/medications" component={MedicationIndex} />
             </Switch>
             <Switch>
-              <Route path="/journals" component={JournalIndex} />
+              <Route path="/journals" component={Journals} />
             </Switch>
             <Switch>
               <Route

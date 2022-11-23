@@ -15,12 +15,21 @@ import { useEffect, useState } from "react";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
+<<<<<<< HEAD
+    apiKey: `${process.env.REACT_APP_API_KEY}`,
+    authDomain: `${process.env.REACT_APP_AUTH_DOMAIN}`,
+    projectId: "trx-auth",
+    storageBucket: "trx-auth.appspot.com",
+    messagingSenderId: "104093916884",
+    appId: "1:104093916884:web:69a52dde6b1b558eebe541",
+=======
   apiKey: `${process.env.REACT_APP_API_KEY}`,
   authDomain: `${process.env.REACT_APP_AUTH_DOMAIN}`,
   projectId: "trx-auth",
   storageBucket: "trx-auth.appspot.com",
   messagingSenderId: "104093916884",
   appId: "1:104093916884:web:69a52dde6b1b558eebe541",
+>>>>>>> 304c3f0d873afec9a70c6e516607a16cda648e4e
 };
 
 // Initialize Firebase
