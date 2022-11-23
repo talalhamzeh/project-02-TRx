@@ -41,7 +41,8 @@ const CombinedPrescription = (props)=>{
         setShowState(false)
     }
     
-    const toShow = () => {
+    const toShow = (prescription) => {
+        setPrescription(prescription);
         setIndexState(false);
         setNewState(false);
         setUpdateState(false);
