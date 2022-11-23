@@ -9,6 +9,8 @@ const IndexDisplay = ({prescriptions = [{drug_name: "Hello"}] , toNew, toUpdate}
                 return (
                 <div key={prescription.div}>
                     <h1>Drug Name: { prescription.drug_name }</h1>
+
+                    
                     <button onClick={ event => toUpdate(prescription)}>Edit Prescription</button>
                 </div>
                 )
@@ -18,3 +20,6 @@ const IndexDisplay = ({prescriptions = [{drug_name: "Hello"}] , toNew, toUpdate}
     )
 }
 export default IndexDisplay
+
+
+{/* < Link to={"update/" + prescription.id } >Edit Prescription</Link> */}

@@ -30,36 +30,32 @@ const MedicationIndex = () => {
   );
 };
 
-const fetchMedicationData = () => {
-  const [medicationData, setMedicationData] = useState([]);
-  // const drugName = this.props.match.params.generic_name
-  // axios(`https://api.fda.gov/drug/drugsfda.json?api_key=m6seTV1TNrDCgSzAhuXtaSPo5PUYWRXKkO24SPWa&search=${ drugName }`)
-  axios
-    .get(
-      "https://api.fda.gov/drug/drugsfda.json?api_key=m6seTV1TNrDCgSzAhuXtaSPo5PUYWRXKkO24SPWa&search=levothyroxine"
-    )
-    .then((response) => {
-      console.log(response.data);
-      const medicationData = Object.assign({}, this.state);
-      // medicationData.drugId = response.data.openfda.;
-      medicationData.brandName = response.data.results.openfda.brand_name;
-      medicationData.genericName = response.data.results.openfda.generic_name;
-      // this.setState(medicationData);
-    });
+// const fetchMedicationData = () => {
+//   const [medicationData, setMedicationData] = useState({});
+//   const [medicationDataTwo, setMedicationDataTwo] = useState({});
 
-  axios
-    .get(
-      "https://api.fda.gov/drug/label.json?api_key=m6seTV1TNrDCgSzAhuXtaSPo5PUYWRXKkO24SPWa&search=levothyroxine"
-    )
-    .then((response) => {
-      console.log(response.data);
-      const medicationDataTwo = Object.assign({}, this.state);
-      // medicationData.activeIngredients = response.data.origin;
-      medicationData.adverseEffects = response.data.results.adverse_reactions;
-      // this.setState(medicationDataTwo);
-    });
-};
+//   const drugName = this.props.match.params.generic_name
+//   axios(`https://api.fda.gov/drug/drugsfda.json?api_key=m6seTV1TNrDCgSzAhuXtaSPo5PUYWRXKkO24SPWa&search=${ drugName }`)
+//   axios
+//     .get(
+//       "https://api.fda.gov/drug/drugsfda.json?api_key=m6seTV1TNrDCgSzAhuXtaSPo5PUYWRXKkO24SPWa&search=levothyroxine"
+//     )
+//     .then((response) => {
+//       console.log(response.data);
+//       setMedicationDataTwo({brandName: response.data.results.openfda.brand_name, genericName: response.data.results.openfda.generic_name})
+//     });
 
-fetchMedicationData();
+//   axios
+//     .get(
+//       "https://api.fda.gov/drug/label.json?api_key=m6seTV1TNrDCgSzAhuXtaSPo5PUYWRXKkO24SPWa&search=levothyroxine"
+//     )
+//     .then((response) => {
+//       console.log(response.data);
+//       setMedicationData({adverseEffects: response.data.results.adverse_reactions})
+//       this.setState(medicationDataTwo);
+//     });
+// };
+
+// fetchMedicationData();
 
 export default MedicationIndex;

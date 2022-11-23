@@ -54,6 +54,7 @@ const Form = ({ returnValues, data = {} }) => {
         }}
       />
 
+<<<<<<< HEAD
       <button
         onClick={(event) =>
           returnValues(
@@ -71,4 +72,25 @@ const Form = ({ returnValues, data = {} }) => {
     </div>
   );
 };
+=======
+            <button 
+                onClick={event => returnValues(
+
+                    {drug_name: drugName, 
+                    dosage_history: dosage,
+                    refills: numberOfReffils,
+                    daily_dosage: dosesPerDay,
+                    dose_strength: dosesPerRefill, 
+                    refill_date: refillDate} 
+
+
+                    
+                )}>
+                    
+                Create Prescription
+            </button>
+        </div>
+    )
+}
+>>>>>>> f3fd92be2ee8217b8d98d70e4249dc0c142d0e81
 export default Form;
