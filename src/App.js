@@ -15,6 +15,8 @@ import Col from 'react-bootstrap/Col';
 import Login from './components/Login/Login';
 import Signup from './components/Login/SignUp';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import UpdatePrescription from './components/Prescriptions/UpdatePrescription';
+import IndexDisplay from './components/Prescriptions/IndexDisplay';
 
 
 
@@ -34,6 +36,11 @@ export default function App() {
       <Switch>
             <Route path="/prescriptions" component={CombinedPrescription} />
           </Switch>
+          <Switch>
+            <Route path="/update/:id" component={IndexDisplay}  />
+          </Switch>
+
+
       <div className="auth-wrapper">
           <div className="auth-inner">
             <Switch>
@@ -48,6 +55,7 @@ export default function App() {
             <Switch>
               <Route path="/journals" component={JournalIndex} />
             </Switch>
+
           </div>
           </div> 
         </div>

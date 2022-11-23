@@ -22,12 +22,12 @@ const Form = ({returnValues, data={} })=>{
             <button 
                 onClick={event => returnValues(
 
-                    {drug_name: drugName},
-                    {dosage_history: dosage},
-                    {refills: numberOfReffils},
-                    {daily_dosage: dosesPerDay},
-                    {dose_strength: dosesPerRefill}, 
-                    {refill_date: refillDate} 
+                    {drug_name: drugName, 
+                    dosage_history: dosage,
+                    refills: numberOfReffils,
+                    daily_dosage: dosesPerDay,
+                    dose_strength: dosesPerRefill, 
+                    refill_date: refillDate} 
 
 
                     
