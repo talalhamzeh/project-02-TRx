@@ -22,6 +22,3 @@ const IndexDisplay = ({prescriptions = [{drug_name: "Hello"}] , toShow, toNew, t
     )
 }
 export default IndexDisplay
-
-
-{/* < Link to={"update/" + prescription.id } >Edit Prescription</Link> */}

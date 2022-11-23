@@ -1,8 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { propTypes } from "react-bootstrap/esm/Image";
-import { Link } from "react-router-dom";
-import CombinedPrescription from "./CombinedPrescription";
+
 const Form = ({ returnValues, data = {} }) => {
   const [drugName, setDrugName] = useState("");
   const [dosage, setDosage] = useState("");
