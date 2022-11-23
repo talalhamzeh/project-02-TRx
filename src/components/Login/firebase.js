@@ -8,7 +8,7 @@ import {
   signOut,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { useEffect, useState } from "react";
+import { useEffect, useState,  useContext, createContext  } from "react";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -54,6 +54,11 @@ export function useAuth() {
   }, []);
 
   return currentUser;
+}
+export const AuthContext = createContext()
+export const useAuthState = () => {
+  const auth = useContext(AuthContext)
+  return { ...auth, isAuthenticated: auth.user != null }
 }
 
 export const firestore = getFirestore(app);

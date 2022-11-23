@@ -2,10 +2,13 @@ import React from 'react'
 import Form from "./Form"
 import { db } from '../Login/firebase';
 import { collection, addDoc } from 'firebase/firestore';
+import { useAuth} from "../Login/firebase"; 
+
 const NewJournal = ({toIndex})=>{
+    const currentUser = useAuth(); 
     const journalsCollectionRef = collection(db, "Journal");
     const createJournal = async(data) =>{
-        await addDoc(journalsCollectionRef,data)
+        await addDoc(journalsCollectionRef,{...data, UID: currentUser.uid})
     }
     const returnValues = (data) => {
         console.log(data)

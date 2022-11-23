@@ -1,6 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+<<<<<<< HEAD
 const IndexDisplay = ({prescriptions = [{drug_name: "Hello"}] ,toShow, toNew, toUpdate}) =>{
+=======
+const IndexDisplay = ({prescriptions ,toShow, toNew, toUpdate}) =>{
+>>>>>>> f4df6c056d8beb1bdbd2a2d360be53078d1f2ffe
     // const prescriptions = props.data
     console.log(prescriptions)
     return(
