@@ -5,6 +5,7 @@ import { collection, getDocs } from "firebase/firestore";
 import NewJournal from "./NewJournal";
 import { useAuth } from "../Login/firebase";
 import UpdateJournal from "./UpdateJournal";
+import ShowJournal from "./ShowJournal"
 
 const Journals = (props) => {
   const currentUser = useAuth();

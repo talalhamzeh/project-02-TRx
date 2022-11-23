@@ -1,5 +1,9 @@
 import React from "react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
+import MedicationIndex from "../Medication/MedicationIndex";
+import { db } from "../Login/firebase";
+import { collection, doc, getDocs } from "firebase/firestore";
+import Select from 'react-select'
 
 const Form = ({ returnValues, data = {} }) => {
   const [drugName, setDrugName] = useState("");
@@ -8,7 +12,19 @@ const Form = ({ returnValues, data = {} }) => {
   const [dosesPerDay, setDosesPerDay] = useState("");
   const [dosesPerRefill, setDosesPerRefill] = useState("");
   const [refillDate, setRefillDate] = useState("");
- 
+  const [medications, setMedications] = useState( [] );
+  const medicationsCollectionRef = collection(db, "Medications");
+
+  useEffect(() => {
+    const getMedications = async () => {
+      const data = await getDocs(medicationsCollectionRef);
+
+      setMedications(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    };
+
+    getMedications();
+  }, []);
+
   return (
     <div className="form">
       <input
@@ -19,6 +35,21 @@ const Form = ({ returnValues, data = {} }) => {
           setDrugName(event.target.value);
         }}
       />
+      
+       
+            <select>
+
+            {medications.map((medication)  => (
+              
+                  <option value={medication.id}>
+                    {medication.brandName}
+                  </option>
+
+              ))}
+          </select>
+
+      
+
       <input
         defaultValue={data.dosage_history}
         type="text"
