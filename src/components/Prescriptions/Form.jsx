@@ -2,15 +2,11 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { db } from "../Login/firebase";
 import { collection, doc, getDocs } from "firebase/firestore";
-<<<<<<< HEAD
 import CreateMedication from "../Medication/CreateMedication"
 import Button from "@mui/material/Button";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 
 
-=======
-import CreateMedication from "../Medication/CreateMedication";
->>>>>>> 3dbdc6e519f04fdde6b6d0eee790bae92d1691f3
 
 const Form = ({ returnValues, data = {} }) => {
   const [drugName, setDrugName] = useState("");
@@ -114,24 +110,6 @@ const Form = ({ returnValues, data = {} }) => {
           />
         </form>
 
-<<<<<<< HEAD
-          {/* <button
-            onClick={(event) =>
-              returnValues({
-                drug_name: drugName,
-                medication_id: medicationID,
-                dosage_history: dosage,
-                refills: numberOfReffils,
-                daily_dosage: dosesPerDay,
-                dose_strength: dosesPerRefill,
-                refill_date: refillDate,
-              })
-            }
-          >
-            {data.drug_name ? "Update" : "Create"} Prescription
-          </button> */}
-
-
 
           <div class ="text-center "> 
              <Button
@@ -143,7 +121,7 @@ const Form = ({ returnValues, data = {} }) => {
                 returnValues({
                   drug_name: drugName,
                   medication_id: medicationID,
-                  dosage_history: dosage,
+                 // dosage_history: dosage,
                   refills: numberOfReffils,
                   daily_dosage: dosesPerDay,
                   dose_strength: dosesPerRefill,
@@ -156,26 +134,7 @@ const Form = ({ returnValues, data = {} }) => {
           </div>
 
     </div>
-=======
-        <button
-          onClick={(event) =>
-            returnValues({
-              prescription_name: scriptName,
-              drug_name: drugName,
-              medication_id: medicationID,
-              // dosage_history: dosage,
-              refills: numberOfReffils,
-              daily_dosage: dosesPerDay,
-              dose_strength: dosage,
-              refill_date: refillDate,
-              doses_per_refill: dosesPerRefill,
-            })
-          }
-        >
-          {data.drug_name ? "Update" : "Create"} Prescription
-        </button>
-      </div>
->>>>>>> 3dbdc6e519f04fdde6b6d0eee790bae92d1691f3
+
     </div>
   );
 };
