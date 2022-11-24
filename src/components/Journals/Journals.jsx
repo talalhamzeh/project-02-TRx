@@ -40,12 +40,12 @@ const Journals = (props) => {
     console.table(journals);
   };
 
-  if (currentUser) {
-    getUIDList();
-  }
+  //   if (currentUser) {
+  //     getUIDList();
+  //   }
 
   useEffect(() => {
-    // getJournals()
+    getJournals();
   }, []);
 
   const toIndex = () => {
@@ -83,7 +83,12 @@ const Journals = (props) => {
   if (indexState && journals.length > 0) {
     console.log(journals, journals.length);
     return (
-      <IndexDisplay journals={journals} toNew={toNew} toUpdate={toUpdate} />
+      <IndexDisplay
+        journals={journals}
+        toNew={toNew}
+        toUpdate={toUpdate}
+        toShow={toShow}
+      />
     );
   }
   if (indexState) {
@@ -95,6 +100,9 @@ const Journals = (props) => {
   }
   if (updateState) {
     return <UpdateJournal journal={journal} toIndex={toIndex} />;
+  }
+  if (showState) {
+    return <ShowJournal journal={journal} toIndex={toIndex} />;
   }
 };
 export default Journals;

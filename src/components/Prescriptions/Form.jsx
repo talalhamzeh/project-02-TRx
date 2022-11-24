@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import MedicationIndex from "../Medication/MedicationIndex";
 import { db } from "../Login/firebase";
 import { collection, doc, getDocs } from "firebase/firestore";
-import Select from "react-select";
 
 const Form = ({ returnValues, data = {} }) => {
   const [drugName, setDrugName] = useState("");
@@ -36,11 +35,11 @@ const Form = ({ returnValues, data = {} }) => {
         }}
       />
 
-      <Select>
+      <select>
         {medications.map((medication) => (
           <option value={medication.id}>{medication.brandName}</option>
         ))}
-      </Select>
+      </select>
 
       <input
         defaultValue={data.dosage_history}
