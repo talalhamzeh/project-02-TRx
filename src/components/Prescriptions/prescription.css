@@ -36,3 +36,9 @@ div.container {
   background-color: #f2f2f2;
   padding: 20px;
 }
+
+.divider{
+  width:5px;
+  height:auto;
+  display:inline-block;
+}
