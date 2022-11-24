@@ -6,10 +6,7 @@ import EditIcon from "@mui/icons-material/Edit";
 
 const IndexDisplay = ({ journals, toNew, toUpdate, toShow }) => {
   // const prescriptions = props.data
-  const today = new Date();
-const numberOfDaysToAdd = 0;
-const date = today.setDate(today.getDate() + numberOfDaysToAdd); 
-const defaultValue = new Date(date).toISOString().split('T')[0] // yyyy-mm-dd
+
 
   return (
     <div className="index">
@@ -18,7 +15,7 @@ const defaultValue = new Date(date).toISOString().split('T')[0] // yyyy-mm-dd
         return (
           <div key={journal.div}>
             <span onClick={(event) => toShow(journal)} class="journal">
-            <i> {defaultValue} </i>
+            <i> {journal.timestamp} </i>
               <br></br>
             </span>
             <Button
