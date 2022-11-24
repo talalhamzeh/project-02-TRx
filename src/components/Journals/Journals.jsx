@@ -40,12 +40,12 @@ const Journals = (props) => {
     console.table(journals);
   };
 
-  if (currentUser) {
-    getUIDList();
-  }
+  // if (currentUser) {
+  //   getUIDList();
+  // }
 
   useEffect(() => {
-    // getJournals()
+    getJournals()
   }, []);
 
   const toIndex = () => {

@@ -56,11 +56,11 @@ const CombinedPrescription = (props) => {
     setUpdateState(true);
     setShowState(false);
   };
-  // if (!currentUser){
-  //     return(
-  //         <Login />
-  //     )
-  // }
+  if (!currentUser){
+      return(
+          <Login />
+      )
+  }
   if (indexState && prescriptions.length > 0) {
     console.log(prescriptions, prescriptions.length);
     return (

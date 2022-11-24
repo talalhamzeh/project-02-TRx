@@ -1,9 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import MedicationIndex from "../Medication/MedicationIndex";
 import { db } from "../Login/firebase";
 import { collection, doc, getDocs } from "firebase/firestore";
-import Select from "react-select";
+
 
 const Form = ({ returnValues, data = {} }) => {
   const [drugName, setDrugName] = useState("");
@@ -26,7 +25,9 @@ const Form = ({ returnValues, data = {} }) => {
   }, []);
 
   return (
-    <div className="form">
+    <div className="container">
+      <form>
+      <label for="dname">Drug Name</label>
       <input
         defaultValue={data.drug_name}
         type="text"
@@ -35,13 +36,13 @@ const Form = ({ returnValues, data = {} }) => {
           setDrugName(event.target.value);
         }}
       />
-
-      <Select>
+      <label for="medic">Medication</label>
+      <select id="select" > 
         {medications.map((medication) => (
           <option value={medication.id}>{medication.brandName}</option>
         ))}
-      </Select>
-
+      </select>
+      <label for="dosage">Dosage</label>
       <input
         defaultValue={data.dosage_history}
         type="text"
@@ -50,6 +51,7 @@ const Form = ({ returnValues, data = {} }) => {
           setDosage(event.target.value);
         }}
       />
+      <label for="nor">Number of refills</label>
       <input
         defaultValue={data.refills}
         type="text"
@@ -58,6 +60,8 @@ const Form = ({ returnValues, data = {} }) => {
           setNumberOfReffils(event.target.value);
         }}
       />
+      <label for="dd">Daily Doses</label>
+
       <input
         defaultValue={data.daily_dosage}
         type="text"
@@ -66,6 +70,7 @@ const Form = ({ returnValues, data = {} }) => {
           setDosesPerDay(event.target.value);
         }}
       />
+       <label for="dpr">Doses per refill</label>
       <input
         defaultValue={data.dose_strength}
         type="text"
@@ -74,6 +79,7 @@ const Form = ({ returnValues, data = {} }) => {
           setDosesPerRefill(event.target.value);
         }}
       />
+      <label for="rd">Refill date</label>
       <input
         defaultValue={data.refill_date}
         type="date"
@@ -83,20 +89,9 @@ const Form = ({ returnValues, data = {} }) => {
         }}
       />
 
-      <button
-        onClick={(event) =>
-          returnValues({
-            drug_name: drugName,
-            dosage_history: dosage,
-            refills: numberOfReffils,
-            daily_dosage: dosesPerDay,
-            dose_strength: dosesPerRefill,
-            refill_date: refillDate,
-          })
-        }
-      >
-        {data.drug_name ? "Update" : "Create"} Prescription
-      </button>
+      
+      </form>
+      
     </div>
   );
 };
