@@ -1,4 +1,3 @@
-
 import IndexDisplay from './IndexDisplay'
 import { useState, useEffect } from 'react';
 import { db } from '../Login/firebase';
@@ -9,6 +8,7 @@ import UpdatePrescription from './UpdatePrescription'
 import axios  from 'axios';
 import Show from './Show'
 import Login from '../Login/Login'
+
 
 const CombinedPrescription = (props) => {
   const currentUser = useAuth();
