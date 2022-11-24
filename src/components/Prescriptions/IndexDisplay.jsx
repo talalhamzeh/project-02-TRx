@@ -1,11 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
+<<<<<<< HEAD
 const IndexDisplay = ({
   prescriptions,
   toShow,
   toNew,
   toUpdate,
 }) => {
+=======
+import Button from "@mui/material/Button";
+import AddBoxIcon from "@mui/icons-material/AddBox";
+import EditIcon from "@mui/icons-material/Edit";
+import "./prescription.css";
+
+const IndexDisplay = ({ prescriptions, toShow, toNew, toUpdate }) => {
+>>>>>>> 928ba6ea73de04fedf29b5e8d219d087125c7cdf
   // const prescriptions = props.data
   console.log(prescriptions);
   return (
@@ -13,18 +22,31 @@ const IndexDisplay = ({
       {prescriptions.map((prescription) => {
         return (
           <div key={prescription.div}>
-            <h1 onClick={(event) => toShow(prescription)}>
+            <h1 onClick={(event) => toShow(prescription)} class="prescription">
               {prescription.drug_name}{" "}
             </h1>
-            <h1>Drug Name: {prescription.drug_name}</h1>
 
-            <button onClick={(event) => toUpdate(prescription)}>
+            <Button
+              onClick={(event) => toUpdate(prescription)}
+              variant="contained"
+              color="success"
+              size="small"
+              startIcon={<EditIcon />}
+            >
               Edit Prescription
-            </button>
+            </Button>
           </div>
         );
       })}
-      <button onClick={toNew}>New</button>
+      <Button
+        startIcon={<AddBoxIcon />}
+        onClick={toNew}
+        variant="contained"
+        color="success"
+        size="small"
+      >
+        New Prescription
+      </Button>
     </div>
   );
 };

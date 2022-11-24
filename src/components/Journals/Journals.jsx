@@ -39,6 +39,7 @@ const Journals = (props) => {
     setJournals(qArray.map((doc) => ({...doc})));
   };
 
+<<<<<<< HEAD
 //   if (currentUser) {
 //     getUIDList();
 //   }
@@ -48,6 +49,15 @@ const Journals = (props) => {
         getUIDList();
       }
   }, [currentUser]);
+=======
+  //   if (currentUser) {
+  //     getUIDList();
+  //   }
+
+  useEffect(() => {
+    getJournals();
+  }, []);
+>>>>>>> 928ba6ea73de04fedf29b5e8d219d087125c7cdf
 
   const toIndex = () => {
     setIndexState(true);
@@ -82,7 +92,12 @@ const Journals = (props) => {
   }
   if (indexState && journals.length > 0) {
     return (
-      <IndexDisplay journals={journals} toNew={toNew} toUpdate={toUpdate} />
+      <IndexDisplay
+        journals={journals}
+        toNew={toNew}
+        toUpdate={toUpdate}
+        toShow={toShow}
+      />
     );
   }
   if (indexState) {

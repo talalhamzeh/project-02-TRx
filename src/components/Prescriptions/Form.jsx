@@ -1,9 +1,8 @@
 import React from "react";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import MedicationIndex from "../Medication/MedicationIndex";
 import { db } from "../Login/firebase";
 import { collection, doc, getDocs } from "firebase/firestore";
-import Select from 'react-select'
 
 const Form = ({ returnValues, data = {} }) => {
   const [drugName, setDrugName] = useState("");
@@ -12,7 +11,7 @@ const Form = ({ returnValues, data = {} }) => {
   const [dosesPerDay, setDosesPerDay] = useState("");
   const [dosesPerRefill, setDosesPerRefill] = useState("");
   const [refillDate, setRefillDate] = useState("");
-  const [medications, setMedications] = useState( [] );
+  const [medications, setMedications] = useState([]);
   const medicationsCollectionRef = collection(db, "Medications");
 
   useEffect(() => {
@@ -35,20 +34,12 @@ const Form = ({ returnValues, data = {} }) => {
           setDrugName(event.target.value);
         }}
       />
-      
-       
-            <select>
 
-            {medications.map((medication)  => (
-              
-                  <option value={medication.id}>
-                    {medication.brandName}
-                  </option>
-
-              ))}
-          </select>
-
-      
+      <select>
+        {medications.map((medication) => (
+          <option value={medication.id}>{medication.brandName}</option>
+        ))}
+      </select>
 
       <input
         defaultValue={data.dosage_history}
@@ -83,7 +74,6 @@ const Form = ({ returnValues, data = {} }) => {
         }}
       />
       <input
-
         defaultValue={data.refill_date}
         type="date"
         placeholder="Refill date"
@@ -94,25 +84,19 @@ const Form = ({ returnValues, data = {} }) => {
 
       <button
         onClick={(event) =>
-
-          returnValues(
-            { drug_name: drugName,
-             dosage_history: dosage,
-             refills: numberOfReffils,
-             daily_dosage: dosesPerDay,
-             dose_strength: dosesPerRefill,
-             refill_date: refillDate }
-             
-          ) 
-          
-
-
+          returnValues({
+            drug_name: drugName,
+            dosage_history: dosage,
+            refills: numberOfReffils,
+            daily_dosage: dosesPerDay,
+            dose_strength: dosesPerRefill,
+            refill_date: refillDate,
+          })
         }
       >
-        { data.drug_name?  "Update" :"Create" } Prescription
+        {data.drug_name ? "Update" : "Create"} Prescription
       </button>
-      
-          </div>
+    </div>
   );
 };
 export default Form;

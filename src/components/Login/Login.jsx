@@ -9,6 +9,7 @@ export default function Login(props) {
   const currentUser = useAuth(); 
   const emailRef = useRef();
   const passwordRef = useRef();
+  
   async function handleLogin() {
     setLoading(true);
     try{ 
