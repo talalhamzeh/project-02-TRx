@@ -41,13 +41,6 @@ const Journals = (props) => {
         getUIDList();
       }
   }, [currentUser]);
-  //   if (currentUser) {
-  //     getUIDList();
-  //   }
-
-  useEffect(() => {
-    getJournals();
-  }, []);
   
   const toIndex = () => {
     setIndexState(true);

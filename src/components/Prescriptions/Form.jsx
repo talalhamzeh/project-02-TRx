@@ -1,8 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import MedicationIndex from "../Medication/MedicationIndex";
 import { db } from "../Login/firebase";
 import { collection, doc, getDocs } from "firebase/firestore";
+import CreateMedication from "../Medication/CreateMedication"
 
 const Form = ({ returnValues, data = {} }) => {
   const [drugName, setDrugName] = useState("");
@@ -12,35 +12,38 @@ const Form = ({ returnValues, data = {} }) => {
   const [dosesPerRefill, setDosesPerRefill] = useState("");
   const [refillDate, setRefillDate] = useState("");
   const [medications, setMedications] = useState([]);
+  const [medicationID, setMedicationID]= useState("")
+  const [toggle, setToggle] = useState([])
   const medicationsCollectionRef = collection(db, "Medications");
 
   useEffect(() => {
     const getMedications = async () => {
       const data = await getDocs(medicationsCollectionRef);
-
       setMedications(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
+
 
     getMedications();
   }, []);
 
+  const handleNewMeds=()=>{
+    setToggle([<CreateMedication />])
+  }
+
   return (
     <div className="form">
-      <input
-        defaultValue={data.drug_name}
-        type="text"
-        placeholder="Drug Name"
-        onChange={(event) => {
-          setDrugName(event.target.value);
-        }}
-      />
-
       <select>
         {medications.map((medication) => (
-          <option value={medication.id}>{medication.brandName}</option>
+          <option value={medication.id}
+          onChange={(event) => {
+            setDrugName(event.target.html);
+            setMedicationID(event.target.value);
+          }}
+          >{medication.brandName}</option>
         ))}
       </select>
-
+      <button onClick={handleNewMeds}>Medication not listed</button>
+          <div>{toggle}</div>
       <input
         defaultValue={data.dosage_history}
         type="text"
@@ -86,6 +89,7 @@ const Form = ({ returnValues, data = {} }) => {
         onClick={(event) =>
           returnValues({
             drug_name: drugName,
+            medication_id: medicationID,
             dosage_history: dosage,
             refills: numberOfReffils,
             daily_dosage: dosesPerDay,

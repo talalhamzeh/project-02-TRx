@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import BookIcon from "@mui/icons-material/Book";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
-const JournalForm = ({ toIndex, returnValues, data = {} }) => {
+const JournalForm = ({  toIndex, returnValues, data = {}  }) => {
   const [content, setContent] = useState("");
   const [sideEffects, setSideEffects] = useState("");
   const [painLevels, setPainLevels] = useState("");
@@ -33,6 +33,7 @@ const JournalForm = ({ toIndex, returnValues, data = {} }) => {
               onChange={(event) => {
                 setSideEffects(event.target.value);
               }}
+              defaultValue={data.sideEffects} 
             />
           </p>
         </label>

@@ -14,7 +14,7 @@ const UpdateJournal = ({ journal, toIndex }) => {
   return (
     <div>
       <h1 class="journalTitle">Edit Journal</h1>
-      <Form returnValues={returnValues} toIndex={toIndex} journal={journal} />
+      <Form returnValues={returnValues} toIndex={toIndex} data={journal} />
     </div>
   );
 };
