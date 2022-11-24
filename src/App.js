@@ -17,7 +17,6 @@ import Col from "react-bootstrap/Col";
 import Login from "./components/Login/Login";
 import Signup from "./components/Login/SignUp";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-
 import UpdatePrescription from "./components/Prescriptions/UpdatePrescription";
 import IndexDisplay from "./components/Prescriptions/IndexDisplay";
 import CreateMedication from "./components/Medication/CreateMedication";

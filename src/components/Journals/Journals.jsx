@@ -1,29 +1,51 @@
 import IndexDisplay from "./IndexDisplay";
 import { useState, useEffect } from "react";
 import { db } from "../Login/firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import NewJournal from "./NewJournal";
 import { useAuth } from "../Login/firebase";
 import UpdateJournal from "./UpdateJournal";
+import Login from "../Login/Login";
 import ShowJournal from "./ShowJournal";
 
 const Journals = (props) => {
-  const currentUser = useAuth();
   const [journal, setJournal] = useState({});
   const [indexState, setIndexState] = useState(true);
   const [newState, setNewState] = useState(false);
   const [updateState, setUpdateState] = useState(false);
   const [showState, setShowState] = useState(false);
   const [journals, setJournals] = useState([]);
-  const journalsCollectionRef = collection(db, "Journal");
 
+  const currentUser = useAuth();
+  const journalsCollectionRef = collection(db, "Journal");
   const getJournals = async () => {
     const data = await getDocs(journalsCollectionRef);
     setJournals(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
 
+  const getUIDList = async () => {
+    const journalsCollectionRef = collection(db, "Journal");
+    const q = query(journalsCollectionRef, where("UID", "==", currentUser.uid));
+    console.log(q);
+    const querySnapshot = await getDocs(q);
+    console.table(querySnapshot);
+    setJournals(querySnapshot.map((doc) => ({ ...doc.data(), id: doc.id })));
+    // const qArray=[]
+    // querySnapshot.forEach((doc) => {
+    //     // doc.data() is never undefined for query doc snapshots
+    //     qArray.push(doc.data())
+    //     console.log(doc.id, " => ", doc.data());
+    //     setJournals(data.docs.map((doc) => ({...doc.data(), id: doc.id })));
+    // });
+    console.table(journals);
+  };
+
+  if (currentUser) {
+    getUIDList();
+  }
+
   useEffect(() => {
-    getJournals();
+    // getJournals()
   }, []);
 
   const toIndex = () => {
@@ -46,7 +68,6 @@ const Journals = (props) => {
     setUpdateState(true);
     setShowState(false);
   };
-
   const toShow = (journal) => {
     setJournal(journal);
     console.log(journal);
@@ -55,19 +76,14 @@ const Journals = (props) => {
     setUpdateState(false);
     setShowState(true);
   };
-  // if (!currentUser){
-  //     // add redirect to login page.
-  //     props.history.push("/login")
-  // }
+  console.log(currentUser);
+  if (!currentUser) {
+    return <Login />;
+  }
   if (indexState && journals.length > 0) {
     console.log(journals, journals.length);
     return (
-      <IndexDisplay
-        journals={journals}
-        toNew={toNew}
-        toUpdate={toUpdate}
-        toShow={toShow}
-      />
+      <IndexDisplay journals={journals} toNew={toNew} toUpdate={toUpdate} />
     );
   }
   if (indexState) {
@@ -80,10 +96,5 @@ const Journals = (props) => {
   if (updateState) {
     return <UpdateJournal journal={journal} toIndex={toIndex} />;
   }
-
-  if (showState) {
-    return <ShowJournal journal={journal} toIndex={toIndex} />;
-  }
 };
-
 export default Journals;

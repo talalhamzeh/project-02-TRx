@@ -7,6 +7,7 @@ import { useAuth} from "../Login/firebase";
 import UpdatePrescription from './UpdatePrescription'
 import axios  from 'axios';
 import Show from './Show'
+import Login from '../Login/Login'
 
 const CombinedPrescription = (props)=>{
     const currentUser = useAuth(); 
@@ -40,7 +41,8 @@ const CombinedPrescription = (props)=>{
         setShowState(false)
     }
     
-    const toShow = () => {
+    const toShow = (prescription) => {
+        setPrescription(prescription);
         setIndexState(false);
         setNewState(false);
         setUpdateState(false);
@@ -54,10 +56,11 @@ const CombinedPrescription = (props)=>{
         setUpdateState(true);
         setShowState(false);
     }
-    // if (!currentUser){
-    //     // add redirect to login page.
-    //     props.history.push("/login")
-    // }
+    if (!currentUser){
+        return(
+            <Login />
+        )
+    }
     if (indexState && prescriptions.length>0){
         console.log(prescriptions ,prescriptions.length)
         return(
