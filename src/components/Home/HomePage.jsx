@@ -87,32 +87,38 @@ const HomePage = () => {
           ></img>
         </p>
         <hr />
-        {medications.map((medication) => {
-          return (
-            <Card sx={{ maxWidth: 345 }} class="center" variant="outlined">
-              <CardMedia
-                component="img"
-                alt="prescribed pills"
-                height="140"
-                image="https://media.istockphoto.com/id/1190193494/photo/prescription-pills.jpg?s=612x612&w=0&k=20&c=8SRnYTlVYjDfDVLQMwRO0alckJqAsF1yXHye259xObQ="
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  {medication.brandName}
-                </Typography>
-                <Typography gutterBottom variant="h7" component="div">
-                  {medication.genericName}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  {medication.description}
-                </Typography>
-                <Typography variant="body2" color="red" class="text-truncate">
-                  {medication.adverseEffects}
-                </Typography>
-              </CardContent>
-            </Card>
-          );
-        })}
+        <div class="homejournals">
+          {medications.map((medication) => {
+            return (
+              <Card sx={{ maxWidth: 200 }} variant="outlined">
+                <CardMedia
+                  component="img"
+                  alt="prescribed pills"
+                  height="140"
+                  image="https://media.istockphoto.com/id/1190193494/photo/prescription-pills.jpg?s=612x612&w=0&k=20&c=8SRnYTlVYjDfDVLQMwRO0alckJqAsF1yXHye259xObQ="
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="div">
+                    {medication.brandName}
+                  </Typography>
+                  <Typography gutterBottom variant="h7" component="div">
+                    {medication.genericName}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    class="text-truncate"
+                  >
+                    {medication.description}
+                  </Typography>
+                  <Typography variant="body2" color="red" class="text-truncate">
+                    {medication.adverseEffects}
+                  </Typography>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </div>
       </p>
     );
   }

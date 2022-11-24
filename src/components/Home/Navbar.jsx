@@ -20,7 +20,7 @@ const Navbar = () => {
     return (
       <div className="App">
         <nav className="navbar navbar-expand-lg navbar-light fixed-top">
-          <div class="container">
+          <div className=" container" id="remove-background">
             <Link className="navbar-brand" to={"/home"}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -60,7 +60,7 @@ const Navbar = () => {
     return (
       <div className="App">
         <nav className="navbar navbar-expand-lg navbar-light fixed-top">
-          <div class="container">
+          <div className=" container" id="remove-background">
             <Link className="navbar-brand" to={"/home"}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"

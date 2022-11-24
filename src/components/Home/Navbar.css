@@ -16,7 +16,9 @@ span {
     top:5px;
     color: black;
 }
-
+#remove-background{
+    background-color: transparent;
+}
 
 .navbar-brand {
     color: white;
