@@ -18,10 +18,6 @@ const Journals = (props) => {
 
   const currentUser = useAuth();
   const journalsCollectionRef = collection(db, "Journal");
-  const getJournals = async () => {
-    const data = await getDocs(journalsCollectionRef);
-    setJournals(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-  };
 
   const getUIDList = async () => {
     const journalsCollectionRef = collection(db, "Journal");
@@ -39,25 +35,13 @@ const Journals = (props) => {
     setJournals(qArray.map((doc) => ({...doc})));
   };
 
-<<<<<<< HEAD
-//   if (currentUser) {
-//     getUIDList();
-//   }
 
   useEffect(() => {
     if (currentUser) {
         getUIDList();
       }
   }, [currentUser]);
-=======
-  //   if (currentUser) {
-  //     getUIDList();
-  //   }
 
-  useEffect(() => {
-    getJournals();
-  }, []);
->>>>>>> 928ba6ea73de04fedf29b5e8d219d087125c7cdf
 
   const toIndex = () => {
     setIndexState(true);
@@ -100,8 +84,18 @@ const Journals = (props) => {
       />
     );
   }
-  if (indexState) {
+  if (indexState && !currentUser) {
     return <p>Loading..</p>;
+  }
+  if(indexState && !currentUser) {
+    return (
+      <IndexDisplay
+        journals={journals}
+        toNew={toNew}
+        toUpdate={toUpdate}
+        toShow={toShow}
+      />
+    );
   }
 
   if (newState) {

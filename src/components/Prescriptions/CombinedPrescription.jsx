@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import IndexDisplay from './IndexDisplay'
 import { useState, useEffect } from 'react';
 import { db } from '../Login/firebase';
@@ -9,18 +9,6 @@ import UpdatePrescription from './UpdatePrescription'
 import axios  from 'axios';
 import Show from './Show'
 import Login from '../Login/Login'
-=======
-import IndexDisplay from "./IndexDisplay";
-import { useState, useEffect } from "react";
-import { db } from "../Login/firebase";
-import { collection, getDocs } from "firebase/firestore";
-import NewPrescription from "./NewPrescription";
-import { useAuth } from "../Login/firebase";
-import UpdatePrescription from "./UpdatePrescription";
-import axios from "axios";
-import Show from "./Show";
-import Login from "../Login/Login";
->>>>>>> 928ba6ea73de04fedf29b5e8d219d087125c7cdf
 
 const CombinedPrescription = (props) => {
   const currentUser = useAuth();
@@ -32,10 +20,9 @@ const CombinedPrescription = (props) => {
   const [prescriptions, setPrescriptions] = useState([]);
   const prescriptionsCollectionRef = collection(db, "Prescriptions");
 
-<<<<<<< HEAD
+
     const getUIDList = async () => {
-        const journalsCollectionRef = collection(db, "Journal");
-        const q = query(journalsCollectionRef, where("UID", "==", currentUser.uid));
+        const q = query(prescriptionsCollectionRef, where("UID", "==", currentUser.uid));
         console.log(q);
         const querySnapshot = await getDocs(q);
         const qArray=[]
@@ -49,10 +36,6 @@ const CombinedPrescription = (props) => {
         setPrescriptions(qArray.map((doc) => ({...doc})));
       };
 
-    const getPrescriptions = async () => {
-        const data = await getDocs(prescriptionsCollectionRef);
-        setPrescriptions(data.docs.map((doc) => ({...doc.data(), id: doc.id })));
-    }
 
     useEffect(() => {
         getUIDList()
@@ -91,56 +74,7 @@ const CombinedPrescription = (props) => {
             <Login />
         )
     }
-    if (indexState && prescriptions.length>0){
-        console.log(prescriptions ,prescriptions.length)
-        return(
-            <div>
-                <IndexDisplay prescriptions={prescriptions} toShow={toShow} toNew={toNew} toUpdate={toUpdate}/>
-            </div>
-=======
-  const getPrescriptions = async () => {
-    const data = await getDocs(prescriptionsCollectionRef);
-    setPrescriptions(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-  };
 
-  useEffect(() => {
-    getPrescriptions();
-  }, []);
-
-  const toIndex = () => {
-    setIndexState(true);
-    setNewState(false);
-    setUpdateState(false);
-    setShowState(false);
-  };
-  const toNew = () => {
-    setIndexState(false);
-    setNewState(true);
-    setUpdateState(false);
-    setShowState(false);
-  };
->>>>>>> 928ba6ea73de04fedf29b5e8d219d087125c7cdf
-
-  const toShow = (prescription) => {
-    setPrescription(prescription);
-    setIndexState(false);
-    setNewState(false);
-    setUpdateState(false);
-    setShowState(true);
-  };
-  const toUpdate = (prescription) => {
-    setPrescription(prescription);
-    console.log(prescription);
-    setIndexState(false);
-    setNewState(false);
-    setUpdateState(true);
-    setShowState(false);
-  };
-  // if (!currentUser){
-  //     return(
-  //         <Login />
-  //     )
-  // }
   if (indexState && prescriptions.length > 0) {
     console.log(prescriptions, prescriptions.length);
     return (
@@ -154,8 +88,18 @@ const CombinedPrescription = (props) => {
       </div>
     );
   }
-  if (indexState) {
+  if (indexState && !currentUser) {
     return <p>Loading..</p>;
+  }
+  if(indexState && currentUser) {
+    return (
+      <IndexDisplay
+        prescriptions={prescriptions}
+        toNew={toNew}
+        toUpdate={toUpdate}
+        toShow={toShow}
+      />
+    );
   }
 
   if (newState) {
