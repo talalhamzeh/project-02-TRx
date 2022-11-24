@@ -13,7 +13,7 @@ const JournalForm = ({ toIndex, returnValues, data = {} }) => {
   const [content, setContent] = useState(" ");
   const [sideEffects, setSideEffects] = useState("");
   const [painLevels, setPainLevels] = useState("");
-
+  console.log(data)
   
 
   return (
@@ -169,11 +169,19 @@ const JournalForm = ({ toIndex, returnValues, data = {} }) => {
       
       <Button
         onClick={(event) =>
-          returnValues({
-            content: content,
-            sideEffects: sideEffects,
-            painLevel: painLevels,
-          })
+          {if(data.id){
+            returnValues({
+              content: content,
+              sideEffects: sideEffects,
+              painLevel: painLevels,
+              id: data.id
+            })}else {
+              returnValues({
+                content: content,
+                sideEffects: sideEffects,
+                painLevel: painLevels,
+              })
+            }}
         }
         size="small"
         variant="contained"

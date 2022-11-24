@@ -19,8 +19,10 @@ const Show = ({ prescription, toShow, toIndex }) => {
     >
       •
     </Box>
-  );
 
+
+  );
+  console.log(prescription)
   return (
     <Box>
       <Card sx={{ maxWidth: 345 }} class="center" variant="outlined">

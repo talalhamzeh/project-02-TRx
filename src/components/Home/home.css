@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,300&display=swap");
+
+.homejournals {
+  display: flex;
+  justify-content: space-between;
+}
+
+.journalheading {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    240deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(57, 156, 135, 1) 78%
+  );
+  border-radius: 1em;
+  font-size: 140%;
+  text-align: center;
+  color: white;
+  font-family: "Open Sans", sans-serif;
+}
+
+.userheading {
+  background-color: #399c87;
+  font-size: 140%;
+  text-align: center;
+  color: white;
+  border-radius: 0.2em;
+  font-family: "Open Sans", sans-serif;
+}
+
+.prescriptionheading {
+  color: rgb(163, 163, 163);
+  font-size: 120%;
+  font-family: "Open Sans", sans-serif;
+}
+
+.image {
+  width: 63vw;
+}

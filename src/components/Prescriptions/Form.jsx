@@ -2,11 +2,15 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { db } from "../Login/firebase";
 import { collection, doc, getDocs } from "firebase/firestore";
+<<<<<<< HEAD
 import CreateMedication from "../Medication/CreateMedication"
 import Button from "@mui/material/Button";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 
 
+=======
+import CreateMedication from "../Medication/CreateMedication";
+>>>>>>> 3dbdc6e519f04fdde6b6d0eee790bae92d1691f3
 
 const Form = ({ returnValues, data = {} }) => {
   const [drugName, setDrugName] = useState("");
@@ -16,8 +20,9 @@ const Form = ({ returnValues, data = {} }) => {
   const [dosesPerRefill, setDosesPerRefill] = useState("");
   const [refillDate, setRefillDate] = useState("");
   const [medications, setMedications] = useState([]);
-  const [medicationID, setMedicationID]= useState("")
-  const [toggle, setToggle] = useState([])
+  const [medicationID, setMedicationID] = useState("");
+  const [scriptName, setScriptName] = useState("");
+  const [toggle, setToggle] = useState([]);
   const medicationsCollectionRef = collection(db, "Medications");
 
   useEffect(() => {
@@ -26,48 +31,44 @@ const Form = ({ returnValues, data = {} }) => {
       setMedications(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
 
-
     getMedications();
   }, []);
 
-  const handleNewMeds=()=>{
-
-      setToggle([<CreateMedication />])
-  }
+  const handleNewMeds = () => {
+    setToggle([<CreateMedication />]);
+  };
 
   return (
-
-    <div className="container">
+    <div className="#container">
       <div className="form">
         <form>
-          <label for="dname">Drug Name</label>
+          <label for="dname">Script Name</label>
           <input
-            defaultValue={data.drug_name}
+            defaultValue={data.script_name}
             type="text"
             placeholder="Drug Name"
             onChange={(event) => {
-              setDrugName(event.target.value);
+              setScriptName(event.target.value);
             }}
           />
           <label for="medic">Medication</label>
-          <select id="select" > 
-             {medications.map((medication) => (
-               <option value={medication.id}
-                  onChange={(event) => {
+          <select id="select">
+            {medications.map((medication) => (
+              <option
+                value={medication.id}
+                onChange={(event) => {
                   setDrugName(event.target.html);
-                    setMedicationID(event.target.value);
-                  }
-                }>
-                  {medication.brandName}
-                </option>
-              ))}
-
+                  setMedicationID(event.target.value);
+                }}
+              >
+                {medication.brandName}
+              </option>
+            ))}
           </select>
-
 
           <label for="dosage">Dosage</label>
           <input
-            defaultValue={data.dosage_history}
+            defaultValue={data.dosage_strength}
             type="text"
             placeholder="Dosage"
             onChange={(event) => {
@@ -95,7 +96,7 @@ const Form = ({ returnValues, data = {} }) => {
           />
           <label for="dpr">Doses per refill</label>
           <input
-            defaultValue={data.dose_strength}
+            defaultValue={data.doses_per_refill}
             type="text"
             placeholder="Doses per refill"
             onChange={(event) => {
@@ -111,10 +112,9 @@ const Form = ({ returnValues, data = {} }) => {
               setRefillDate(event.target.value);
             }}
           />
-      
         </form>
-      
 
+<<<<<<< HEAD
           {/* <button
             onClick={(event) =>
               returnValues({
@@ -156,6 +156,26 @@ const Form = ({ returnValues, data = {} }) => {
           </div>
 
     </div>
+=======
+        <button
+          onClick={(event) =>
+            returnValues({
+              prescription_name: scriptName,
+              drug_name: drugName,
+              medication_id: medicationID,
+              // dosage_history: dosage,
+              refills: numberOfReffils,
+              daily_dosage: dosesPerDay,
+              dose_strength: dosage,
+              refill_date: refillDate,
+              doses_per_refill: dosesPerRefill,
+            })
+          }
+        >
+          {data.drug_name ? "Update" : "Create"} Prescription
+        </button>
+      </div>
+>>>>>>> 3dbdc6e519f04fdde6b6d0eee790bae92d1691f3
     </div>
   );
 };
