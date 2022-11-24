@@ -1,7 +1,7 @@
 import React from "react";
 import Form from "./Form";
 import { db } from "../Login/firebase";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, getDocs, query, where, addDoc } from "firebase/firestore";
 import { useAuth } from "../Login/firebase";
 import { useState, useEffect } from "react";
 
@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 
 const NewJournal = ({ toIndex }) => {
   const [prescriptions, setPrescriptions] = useState([]);
+  const prescriptionsCollectionRef = collection(db, "Prescriptions");
 // list of current scripts for journal
   const getUIDList = async () => {
     const q = query(prescriptionsCollectionRef, where("UID", "==", currentUser.uid));
@@ -21,7 +22,7 @@ const NewJournal = ({ toIndex }) => {
         // 
     });
     console.log(qArray)
-    setPrescriptions(qArray.map((doc) => ({...doc})));
+    setPrescriptions(qArray.map((doc) => (`${doc.drug_name} ${doc.dosage_strength} ended : ${defaultValue}`)));
   };
 
 
