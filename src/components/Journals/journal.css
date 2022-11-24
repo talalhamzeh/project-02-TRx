@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,300&display=swap");
+
+.center {
+  width: 40vw;
+  text-overflow: ellipsis;
+}
+
+.journal {
+  color: #399c87;
+  text-decoration: underline;
+  font-size: 170%;
+  font-family: "Open Sans", sans-serif;
+}
+
+.journalTitle {
+  color: #399c87;
+  font-size: 200%;
+}
+
+.topbutton {
+  margin-top: 10px;
+}
