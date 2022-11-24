@@ -30,42 +30,46 @@ const CreateMedication = () => {
     });
   };
 
-  const promiseOne = axios
-    .get(
-      `https://api.fda.gov/drug/drugsfda.json?api_key=m6seTV1TNrDCgSzAhuXtaSPo5PUYWRXKkO24SPWa&search=${name}`
-    )
-    .then((response) => {
-      medicationData = {
-        brandName: response.data.results[0].openfda.brand_name[0],
-        genericName: response.data.results[0].openfda.generic_name[0],
-      };
-    });
-
-  const promiseTwo = axios
-    .get(
-      `https://api.fda.gov/drug/label.json?api_key=m6seTV1TNrDCgSzAhuXtaSPo5PUYWRXKkO24SPWa&search=${name}`
-    )
-    .then((response) => {
-      medicationDataTwo = {
-        adverseEffects: response.data.results[0].adverse_reactions[0],
-        description: response.data.results[0].description[0],
-      };
-    });
-
   const _handleNew = () => {
-    Promise.all([promiseOne, promiseTwo]).then(() => {
-      console.log(medications);
-      let medicationsBrandName = [];
-      for (let i = 0; i < medications.length; i++) {
-        medicationsBrandName.push(medications[i].brandName);
-      }
-      console.log(medicationsBrandName);
-      if (medicationsBrandName.includes(medicationData.brandName)) {
-        setError("Already in database.");
-      } else {
-        createMedication();
-      }
-    });
+    const promiseOne = axios
+      .get(
+        `https://api.fda.gov/drug/drugsfda.json?api_key=m6seTV1TNrDCgSzAhuXtaSPo5PUYWRXKkO24SPWa&search=${name}`
+      )
+      .then((response) => {
+        medicationData = {
+          brandName: response.data.results[0].openfda.brand_name[0],
+          genericName: response.data.results[0].openfda.generic_name[0],
+        };
+      });
+
+    const promiseTwo = axios
+      .get(
+        `https://api.fda.gov/drug/label.json?api_key=m6seTV1TNrDCgSzAhuXtaSPo5PUYWRXKkO24SPWa&search=${name}`
+      )
+      .then((response) => {
+        medicationDataTwo = {
+          adverseEffects: response.data.results[0].adverse_reactions[0],
+          description: response.data.results[0].description[0],
+        };
+      });
+
+    Promise.all([promiseOne, promiseTwo])
+      .then(() => {
+        let medicationsBrandName = [];
+        setError("");
+        for (let i = 0; i < medications.length; i++) {
+          medicationsBrandName.push(medications[i].brandName);
+          console.log(medicationsBrandName);
+        }
+        if (medicationsBrandName.includes(medicationData.brandName)) {
+          setError("Already in database.");
+        } else {
+          createMedication();
+        }
+      })
+      .catch((error) => {
+        setError("No data found.");
+      });
   };
 
   return (

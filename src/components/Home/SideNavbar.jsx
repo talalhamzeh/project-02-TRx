@@ -9,7 +9,7 @@ const SideNavbar = () => {
       <nav id="sidebar" class="active">
         <h1>
           <a href="#" class="logo">
-            M.
+            TRx.
           </a>
         </h1>
         <ul class="list-unstyled components mb-5">

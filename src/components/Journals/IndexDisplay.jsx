@@ -1,20 +1,43 @@
 import React from "react";
-const IndexDisplay = ({ journal, toNew, toUpdate }) => {
+import "./journal.css";
+import Button from "@mui/material/Button";
+import AddBoxIcon from "@mui/icons-material/AddBox";
+import EditIcon from "@mui/icons-material/Edit";
+
+const IndexDisplay = ({ journals, toNew, toUpdate, toShow }) => {
   // const prescriptions = props.data
-  console.log(journal);
   return (
     <div className="index">
-      {journal.map((journal) => {
+      {journals.map((journal) => {
         return (
           <div key={journal.div}>
-            <h1 onClick={(event) => journal.id}>
-              Drug Name: {journal.content}
-            </h1>
-            <button onClick={(event) => toUpdate(journal)}>Edit Journal</button>
+            <span onClick={(event) => toShow(journal)} class="journal">
+              <i>{journal.timestamp} </i>
+              <br></br>
+            </span>
+            <Button
+              onClick={(event) => toUpdate(journal)}
+              variant="contained"
+              color="success"
+              size="small"
+              startIcon={<EditIcon />}
+            >
+              Edit Journal
+            </Button>
           </div>
         );
       })}
-      <button onClick={toNew}>New</button>
+      <div>
+        <Button
+          startIcon={<AddBoxIcon />}
+          onClick={toNew}
+          variant="contained"
+          color="success"
+          size="small"
+        >
+          New Journal
+        </Button>
+      </div>
     </div>
   );
 };

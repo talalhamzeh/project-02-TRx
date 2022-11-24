@@ -5,6 +5,7 @@ import { collection, getDocs } from "firebase/firestore";
 import NewJournal from "./NewJournal";
 import { useAuth } from "../Login/firebase";
 import UpdateJournal from "./UpdateJournal";
+import ShowJournal from "./ShowJournal";
 
 const Journals = (props) => {
   const currentUser = useAuth();
@@ -61,7 +62,12 @@ const Journals = (props) => {
   if (indexState && journals.length > 0) {
     console.log(journals, journals.length);
     return (
-      <IndexDisplay journals={journals} toNew={toNew} toUpdate={toUpdate} />
+      <IndexDisplay
+        journals={journals}
+        toNew={toNew}
+        toUpdate={toUpdate}
+        toShow={toShow}
+      />
     );
   }
   if (indexState) {
