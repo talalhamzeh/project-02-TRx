@@ -12,7 +12,7 @@ export default function SignUp(props) {
     const emailRef = useRef();
     const passwordRef = useRef();
     const passwordConfirmationRef = useRef();
-    const nameRef = useRef(); 
+    const displayNameRef = useRef();
     // we made this async signup is gonna retun a prom as it in the retunr create
 
   
@@ -20,7 +20,7 @@ export default function SignUp(props) {
       setLoading(true);
       if (passwordRef.current.value === passwordConfirmationRef.current.value) {
 
-        await signup(emailRef.current.value, passwordRef.current.value );
+        await signup(emailRef.current.value, passwordRef.current.value,displayNameRef.current.value);
     
         setLoading(false);
         
@@ -39,7 +39,7 @@ export default function SignUp(props) {
         <div className="mb-3">
           <label>First name</label>
           <input
-          
+          ref={displayNameRef}
             type="text"
             className="form-control"
             placeholder="First name"

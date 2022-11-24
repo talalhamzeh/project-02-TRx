@@ -3,6 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "@firebase/firestore";
 import {
   getAuth,
+  updateProfile,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
@@ -28,9 +29,13 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 export const db = getFirestore(app);
 
-export function signup(email, password) {
+export async function signup(email, password, displayName ) {
   // we return so we can get the status if it succeded or failed in creating a new user
-  return createUserWithEmailAndPassword(auth, email, password);
+  const response = await createUserWithEmailAndPassword(auth, email, password)
+const user = response.user 
+console.log(user)
+updateProfile(user, {displayName})
+return response;
 }
 
 export function login(email, password) {
