@@ -9,6 +9,7 @@ const IndexDisplay = ({ journals, toNew, toUpdate, toShow }) => {
   return (
     <div className="index">
       {journals.map((journal) => {
+        console.log(journal)
         return (
           <div key={journal.div}>
             <span onClick={(event) => toShow(journal)} class="journal">

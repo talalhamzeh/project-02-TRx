@@ -15,6 +15,7 @@ import SentimentVerySatisfiedIcon from "@mui/icons-material/SentimentVerySatisfi
 import "./journal.css";
 
 const ShowJournal = ({ toIndex, journal }) => {
+  console.log(journal);
   const StyledRating = styled(Rating)(({ theme }) => ({
     "& .MuiRating-iconEmpty .MuiSvgIcon-root": {
       color: theme.palette.action.disabled,

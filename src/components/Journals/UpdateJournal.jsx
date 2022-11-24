@@ -8,7 +8,7 @@ const UpdateJournal = ({ journal, toIndex }) => {
   const currentUser = useAuth();
   const returnValues = (updatedValues) => {
     const docRef = doc(db, "Journal", journal.id);
-    setDoc(docRef, { ...updatedValues, UID: currentUser.uid });
+    setDoc(docRef, { ...updatedValues, UID: currentUser.uid, timestamp: "24/11/22" });
     toIndex();
   };
   return (

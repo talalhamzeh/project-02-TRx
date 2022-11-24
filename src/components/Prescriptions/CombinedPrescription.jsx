@@ -1,13 +1,14 @@
-import IndexDisplay from "./IndexDisplay";
-import { useState, useEffect } from "react";
-import { db } from "../Login/firebase";
-import { collection, getDocs } from "firebase/firestore";
-import NewPrescription from "./NewPrescription";
-import { useAuth } from "../Login/firebase";
-import UpdatePrescription from "./UpdatePrescription";
-import axios from "axios";
-import Show from "./Show";
-import Login from "../Login/Login";
+import IndexDisplay from './IndexDisplay'
+import { useState, useEffect } from 'react';
+import { db } from '../Login/firebase';
+import { collection, getDocs, query, where } from "firebase/firestore";
+import NewPrescription from './NewPrescription';
+import { useAuth} from "../Login/firebase"; 
+import UpdatePrescription from './UpdatePrescription'
+import axios  from 'axios';
+import Show from './Show'
+import Login from '../Login/Login'
+
 
 const CombinedPrescription = (props) => {
   const currentUser = useAuth();
@@ -19,27 +20,22 @@ const CombinedPrescription = (props) => {
   const [prescriptions, setPrescriptions] = useState([]);
   const prescriptionsCollectionRef = collection(db, "Prescriptions");
 
-  const getPrescriptions = async () => {
-    const data = await getDocs(prescriptionsCollectionRef);
-    setPrescriptions(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-  };
 
-  useEffect(() => {
-    getPrescriptions();
-  }, []);
+    const getUIDList = async () => {
+        const q = query(prescriptionsCollectionRef, where("UID", "==", currentUser.uid));
+        console.log(q);
+        const querySnapshot = await getDocs(q);
+        const qArray=[]
+        querySnapshot.forEach((doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            qArray.push(doc.data())
+            console.log(doc.id, " => ", doc.data());
+            // 
+        });
+        console.log(qArray)
+        setPrescriptions(qArray.map((doc) => ({...doc})));
+      };
 
-  const toIndex = () => {
-    setIndexState(true);
-    setNewState(false);
-    setUpdateState(false);
-    setShowState(false);
-  };
-  const toNew = () => {
-    setIndexState(false);
-    setNewState(true);
-    setUpdateState(false);
-    setShowState(false);
-  };
 
   const toShow = (prescription) => {
     setPrescription(prescription);
@@ -74,8 +70,18 @@ const CombinedPrescription = (props) => {
       </div>
     );
   }
-  if (indexState) {
+  if (indexState && !currentUser) {
     return <p>Loading..</p>;
+  }
+  if(indexState && currentUser) {
+    return (
+      <IndexDisplay
+        prescriptions={prescriptions}
+        toNew={toNew}
+        toUpdate={toUpdate}
+        toShow={toShow}
+      />
+    );
   }
 
   if (newState) {

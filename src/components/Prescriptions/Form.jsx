@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { db } from "../Login/firebase";
 import { collection, doc, getDocs } from "firebase/firestore";
 
-
 const Form = ({ returnValues, data = {} }) => {
   const [drugName, setDrugName] = useState("");
   const [dosage, setDosage] = useState("");
@@ -12,17 +11,23 @@ const Form = ({ returnValues, data = {} }) => {
   const [dosesPerRefill, setDosesPerRefill] = useState("");
   const [refillDate, setRefillDate] = useState("");
   const [medications, setMedications] = useState([]);
+  const [medicationID, setMedicationID]= useState("")
+  const [toggle, setToggle] = useState([])
   const medicationsCollectionRef = collection(db, "Medications");
 
   useEffect(() => {
     const getMedications = async () => {
       const data = await getDocs(medicationsCollectionRef);
-
       setMedications(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
 
+
     getMedications();
   }, []);
+
+  const handleNewMeds=()=>{
+    setToggle([<CreateMedication />])
+  }
 
   return (
     <div className="container">
@@ -39,7 +44,12 @@ const Form = ({ returnValues, data = {} }) => {
       <label for="medic">Medication</label>
       <select id="select" > 
         {medications.map((medication) => (
-          <option value={medication.id}>{medication.brandName}</option>
+          <option value={medication.id}
+          onChange={(event) => {
+            setDrugName(event.target.html);
+            setMedicationID(event.target.value);
+          }}
+          >{medication.brandName}</option>
         ))}
       </select>
       <label for="dosage">Dosage</label>
@@ -92,6 +102,21 @@ const Form = ({ returnValues, data = {} }) => {
       
       </form>
       
+      <button
+        onClick={(event) =>
+          returnValues({
+            drug_name: drugName,
+            medication_id: medicationID,
+            dosage_history: dosage,
+            refills: numberOfReffils,
+            daily_dosage: dosesPerDay,
+            dose_strength: dosesPerRefill,
+            refill_date: refillDate,
+          })
+        }
+      >
+        {data.drug_name ? "Update" : "Create"} Prescription
+      </button>
     </div>
   );
 };

@@ -18,28 +18,24 @@ const Journals = (props) => {
 
   const currentUser = useAuth();
   const journalsCollectionRef = collection(db, "Journal");
-  const getJournals = async () => {
-    const data = await getDocs(journalsCollectionRef);
-    setJournals(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-  };
 
   const getUIDList = async () => {
     const journalsCollectionRef = collection(db, "Journal");
     const q = query(journalsCollectionRef, where("UID", "==", currentUser.uid));
     console.log(q);
     const querySnapshot = await getDocs(q);
-    console.table(querySnapshot);
-    setJournals(querySnapshot.map((doc) => ({ ...doc.data(), id: doc.id })));
-    // const qArray=[]
-    // querySnapshot.forEach((doc) => {
-    //     // doc.data() is never undefined for query doc snapshots
-    //     qArray.push(doc.data())
-    //     console.log(doc.id, " => ", doc.data());
-    //     setJournals(data.docs.map((doc) => ({...doc.data(), id: doc.id })));
-    // });
-    console.table(journals);
+    const qArray = [];
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      qArray.push(doc.data());
+      console.log(doc.id, " => ", doc.data());
+      //
+    });
+    console.log(qArray);
+    setJournals(qArray.map((doc) => ({ ...doc })));
   };
 
+<<<<<<< HEAD
   // if (currentUser) {
   //   getUIDList();
   // }
@@ -48,6 +44,15 @@ const Journals = (props) => {
     getJournals()
   }, []);
 
+=======
+
+  useEffect(() => {
+    if (currentUser) {
+        getUIDList();
+      }
+  }, [currentUser]);
+  
+>>>>>>> 4cf869596ba6d21c56f6c4fac011338c76eeef82
   const toIndex = () => {
     setIndexState(true);
     setNewState(false);
@@ -76,18 +81,31 @@ const Journals = (props) => {
     setUpdateState(false);
     setShowState(true);
   };
-  console.log(currentUser);
   if (!currentUser) {
     return <Login />;
   }
   if (indexState && journals.length > 0) {
-    console.log(journals, journals.length);
     return (
-      <IndexDisplay journals={journals} toNew={toNew} toUpdate={toUpdate} />
+      <IndexDisplay
+        journals={journals}
+        toNew={toNew}
+        toUpdate={toUpdate}
+        toShow={toShow}
+      />
     );
   }
-  if (indexState) {
+  if (indexState && !currentUser) {
     return <p>Loading..</p>;
+  }
+  if(indexState && currentUser) {
+    return (
+      <IndexDisplay
+        journals={journals}
+        toNew={toNew}
+        toUpdate={toUpdate}
+        toShow={toShow}
+      />
+    );
   }
 
   if (newState) {
@@ -95,6 +113,9 @@ const Journals = (props) => {
   }
   if (updateState) {
     return <UpdateJournal journal={journal} toIndex={toIndex} />;
+  }
+  if (showState) {
+    return <ShowJournal journal={journal} toIndex={toIndex} />;
   }
 };
 export default Journals;

@@ -8,7 +8,7 @@ const NewJournal = ({ toIndex }) => {
   const currentUser = useAuth();
   const journalsCollectionRef = collection(db, "Journal");
   const createJournal = async (data) => {
-    await addDoc(journalsCollectionRef, { ...data, UID: currentUser.uid });
+    await addDoc(journalsCollectionRef, { ...data, UID: currentUser.uid, timestamp: "24/11/22" });
   };
   const returnValues = (data) => {
     console.log(data);

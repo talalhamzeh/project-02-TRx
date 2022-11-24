@@ -46,6 +46,7 @@ const JournalForm = ({ toIndex, returnValues, data = {} }) => {
               onChange={(event) => {
                 setSideEffects(event.target.value);
               }}
+              defaultValue={data.sideEffects} 
             />
           </p>
         </label>
@@ -177,7 +178,6 @@ const JournalForm = ({ toIndex, returnValues, data = {} }) => {
         size="small"
         variant="contained"
         color="success"
-        size="small"
         startIcon={<BookIcon />}
       >
 
@@ -192,7 +192,6 @@ const JournalForm = ({ toIndex, returnValues, data = {} }) => {
         onClick={toIndex}
         variant="contained"
         color="success"
-        size="small"
         startIcon={<ArrowBackIcon />}
       >
         Back
