@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 
 
 const NewJournal = ({ toIndex }) => {
+  const currentUser = useAuth();
   const [prescriptions, setPrescriptions] = useState([]);
   const prescriptionsCollectionRef = collection(db, "Prescriptions");
 // list of current scripts for journal
@@ -18,11 +19,9 @@ const NewJournal = ({ toIndex }) => {
     const qArray=[]
     querySnapshot.forEach((doc) => {
         qArray.push(doc.data())
-        console.log(doc.id, " => ", doc.data());
-        // 
     });
-    console.log(qArray)
-    setPrescriptions(qArray.map((doc) => (`${doc.drug_name} ${doc.dosage_strength} ended : ${defaultValue}`)));
+    setPrescriptions(qArray.map((doc) => (`${doc.drug_name} ${doc.dosage_strength}`)));
+    console.log(prescriptions)
   };
 
 
@@ -30,14 +29,14 @@ useEffect(() => {
     getUIDList()
 },[currentUser]);
 
-  const currentUser = useAuth();
+
   const journalsCollectionRef = collection(db, "Journal");
   const today = new Date();
   const numberOfDaysToAdd = 0;
   const date = today.setDate(today.getDate() + numberOfDaysToAdd); 
   const defaultValue = new Date(date).toISOString().split('T')[0] // yyyy-mm-dd
   const createJournal = async (data) => {
-    await addDoc(journalsCollectionRef, { ...data, UID: currentUser.uid, timestamp : defaultValue });
+    await addDoc(journalsCollectionRef, { ...data, UID: currentUser.uid, timestamp : defaultValue, prescriptions: prescriptions });
   };
   const returnValues = (data) => {
     console.log(data);

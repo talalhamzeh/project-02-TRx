@@ -7,6 +7,9 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+
+
 
 const Show = ({ prescription, toShow, toIndex }) => {
   const bull = (
@@ -69,9 +72,24 @@ const Show = ({ prescription, toShow, toIndex }) => {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small" onClick={toIndex}>
-            Back
-          </Button>
+         
+          <div>
+             <Button 
+              size="small"
+              onClick={toIndex}
+              variant="contained"
+              color="success"
+              startIcon={<ArrowBackIcon />}
+            >
+              Back
+            </Button>
+
+            </div>
+
+
+
+
+
         </CardActions>
       </Card>
     </Box>

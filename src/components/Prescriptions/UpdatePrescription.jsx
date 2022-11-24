@@ -3,6 +3,9 @@ import { db } from '../Login/firebase';
 import { doc , setDoc } from 'firebase/firestore';
 import Form from "./Form"
 import { useAuth} from "../Login/firebase"; 
+import Button from "@mui/material/Button";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+
 
 const UpdatePrescription = ({prescription, toIndex})=>{
     const currentUser = useAuth(); 
@@ -14,8 +17,23 @@ const UpdatePrescription = ({prescription, toIndex})=>{
     return (
         <div>
             <h1>Edit Prescription</h1>
-            <Form returnValues={returnValues} data={prescription}/>            
-            <button onClick={event=> toIndex() } >Back</button>
+            <Form returnValues={returnValues} data={prescription}/> 
+                       
+        
+            <div>
+             <Button 
+              size="small"
+              onClick={event=> toIndex() }
+              variant="contained"
+              color="success"
+              startIcon={<ArrowBackIcon />}
+            >
+              Back
+            </Button>
+
+            </div>
+
+            
         
         </div>
     )
