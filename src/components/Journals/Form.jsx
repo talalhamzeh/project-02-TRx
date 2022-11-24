@@ -161,7 +161,6 @@ const JournalForm = ({ toIndex, returnValues, data = {} }) => {
         size="small"
         variant="contained"
         color="success"
-        size="small"
         startIcon={<BookIcon />}
       >
         Create Journal Entry
@@ -171,7 +170,6 @@ const JournalForm = ({ toIndex, returnValues, data = {} }) => {
         onClick={toIndex}
         variant="contained"
         color="success"
-        size="small"
         startIcon={<ArrowBackIcon />}
       >
         Back

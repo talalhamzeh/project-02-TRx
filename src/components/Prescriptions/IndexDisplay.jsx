@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 const IndexDisplay = ({
-  prescriptions = [{ drug_name: "Hello" }],
+  prescriptions,
   toShow,
   toNew,
   toUpdate,

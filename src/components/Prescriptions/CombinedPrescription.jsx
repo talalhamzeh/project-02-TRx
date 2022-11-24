@@ -1,7 +1,7 @@
 import IndexDisplay from './IndexDisplay'
 import { useState, useEffect } from 'react';
 import { db } from '../Login/firebase';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, query, where } from "firebase/firestore";
 import NewPrescription from './NewPrescription';
 import { useAuth} from "../Login/firebase"; 
 import UpdatePrescription from './UpdatePrescription'
@@ -19,14 +19,30 @@ const CombinedPrescription = (props)=>{
     const [prescriptions, setPrescriptions] = useState([]);
     const prescriptionsCollectionRef = collection(db, "Prescriptions");
 
+    const getUIDList = async () => {
+        const journalsCollectionRef = collection(db, "Journal");
+        const q = query(journalsCollectionRef, where("UID", "==", currentUser.uid));
+        console.log(q);
+        const querySnapshot = await getDocs(q);
+        const qArray=[]
+        querySnapshot.forEach((doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            qArray.push(doc.data())
+            console.log(doc.id, " => ", doc.data());
+            // 
+        });
+        console.log(qArray)
+        setPrescriptions(qArray.map((doc) => ({...doc})));
+      };
+
     const getPrescriptions = async () => {
         const data = await getDocs(prescriptionsCollectionRef);
         setPrescriptions(data.docs.map((doc) => ({...doc.data(), id: doc.id })));
     }
 
     useEffect(() => {
-        getPrescriptions()
-    },[]);
+        getUIDList()
+    },[currentUser]);
 
     const toIndex = ()=>{
         setIndexState(true);
@@ -65,7 +81,6 @@ const CombinedPrescription = (props)=>{
         console.log(prescriptions ,prescriptions.length)
         return(
             <div>
-                <h1>hello</h1>
                 <IndexDisplay prescriptions={prescriptions} toShow={toShow} toNew={toNew} toUpdate={toUpdate}/>
             </div>
 

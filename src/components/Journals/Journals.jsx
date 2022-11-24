@@ -28,25 +28,26 @@ const Journals = (props) => {
     const q = query(journalsCollectionRef, where("UID", "==", currentUser.uid));
     console.log(q);
     const querySnapshot = await getDocs(q);
-    console.table(querySnapshot);
-    setJournals(querySnapshot.map((doc) => ({ ...doc.data(), id: doc.id })));
-    // const qArray=[]
-    // querySnapshot.forEach((doc) => {
-    //     // doc.data() is never undefined for query doc snapshots
-    //     qArray.push(doc.data())
-    //     console.log(doc.id, " => ", doc.data());
-    //     setJournals(data.docs.map((doc) => ({...doc.data(), id: doc.id })));
-    // });
-    console.table(journals);
+    const qArray=[]
+    querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        qArray.push(doc.data())
+        console.log(doc.id, " => ", doc.data());
+        // 
+    });
+    console.log(qArray)
+    setJournals(qArray.map((doc) => ({...doc})));
   };
 
-  if (currentUser) {
-    getUIDList();
-  }
+//   if (currentUser) {
+//     getUIDList();
+//   }
 
   useEffect(() => {
-    // getJournals()
-  }, []);
+    if (currentUser) {
+        getUIDList();
+      }
+  }, [currentUser]);
 
   const toIndex = () => {
     setIndexState(true);
@@ -76,12 +77,10 @@ const Journals = (props) => {
     setUpdateState(false);
     setShowState(true);
   };
-  console.log(currentUser);
   if (!currentUser) {
     return <Login />;
   }
   if (indexState && journals.length > 0) {
-    console.log(journals, journals.length);
     return (
       <IndexDisplay journals={journals} toNew={toNew} toUpdate={toUpdate} />
     );
@@ -95,6 +94,9 @@ const Journals = (props) => {
   }
   if (updateState) {
     return <UpdateJournal journal={journal} toIndex={toIndex} />;
+  }
+  if (showState) {
+    return <ShowJournal journal={journal} toIndex={toIndex} />;
   }
 };
 export default Journals;
