@@ -31,7 +31,7 @@ const IndexDisplay = ({ journals, toNew, toUpdate, toShow }) => {
         );
       })}
       <div class="divider"/>
-        <div>
+        <div class ="text-center ">
         <Button
           startIcon={<AddBoxIcon />}
           onClick={toNew}
