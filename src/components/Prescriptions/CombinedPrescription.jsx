@@ -1,26 +1,13 @@
-<<<<<<< HEAD
-import IndexDisplay from './IndexDisplay'
-import { useState, useEffect } from 'react';
-import { db } from '../Login/firebase';
-import { collection, getDocs, query, where } from "firebase/firestore";
-import NewPrescription from './NewPrescription';
-import { useAuth} from "../Login/firebase"; 
-import UpdatePrescription from './UpdatePrescription'
-import axios  from 'axios';
-import Show from './Show'
-import Login from '../Login/Login'
-=======
 import IndexDisplay from "./IndexDisplay";
 import { useState, useEffect } from "react";
 import { db } from "../Login/firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import NewPrescription from "./NewPrescription";
 import { useAuth } from "../Login/firebase";
 import UpdatePrescription from "./UpdatePrescription";
 import axios from "axios";
 import Show from "./Show";
 import Login from "../Login/Login";
->>>>>>> 928ba6ea73de04fedf29b5e8d219d087125c7cdf
 
 const CombinedPrescription = (props) => {
   const currentUser = useAuth();
@@ -32,80 +19,30 @@ const CombinedPrescription = (props) => {
   const [prescriptions, setPrescriptions] = useState([]);
   const prescriptionsCollectionRef = collection(db, "Prescriptions");
 
-<<<<<<< HEAD
-    const getUIDList = async () => {
-        const journalsCollectionRef = collection(db, "Journal");
-        const q = query(journalsCollectionRef, where("UID", "==", currentUser.uid));
-        console.log(q);
-        const querySnapshot = await getDocs(q);
-        const qArray=[]
-        querySnapshot.forEach((doc) => {
-            // doc.data() is never undefined for query doc snapshots
-            qArray.push(doc.data())
-            console.log(doc.id, " => ", doc.data());
-            // 
-        });
-        console.log(qArray)
-        setPrescriptions(qArray.map((doc) => ({...doc})));
-      };
+  const getUIDList = async () => {
+    const journalsCollectionRef = collection(db, "Journal");
+    const q = query(journalsCollectionRef, where("UID", "==", currentUser.uid));
+    console.log(q);
+    const querySnapshot = await getDocs(q);
+    const qArray = [];
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      qArray.push(doc.data());
+      console.log(doc.id, " => ", doc.data());
+      //
+    });
+    console.log(qArray);
+    setPrescriptions(qArray.map((doc) => ({ ...doc })));
+  };
 
-    const getPrescriptions = async () => {
-        const data = await getDocs(prescriptionsCollectionRef);
-        setPrescriptions(data.docs.map((doc) => ({...doc.data(), id: doc.id })));
-    }
-
-    useEffect(() => {
-        getUIDList()
-    },[currentUser]);
-
-    const toIndex = ()=>{
-        setIndexState(true);
-        setNewState(false);
-        setUpdateState(false);
-        setShowState(false)
-    }
-    const toNew = () => {
-        setIndexState(false);
-        setNewState(true);
-        setUpdateState(false);
-        setShowState(false)
-    }
-    
-    const toShow = (prescription) => {
-        setPrescription(prescription);
-        setIndexState(false);
-        setNewState(false);
-        setUpdateState(false);
-        setShowState(true)
-    }
-    const toUpdate = (prescription) => {
-        setPrescription(prescription)
-        console.log(prescription)
-        setIndexState(false);
-        setNewState(false);
-        setUpdateState(true);
-        setShowState(false);
-    }
-    if (!currentUser){
-        return(
-            <Login />
-        )
-    }
-    if (indexState && prescriptions.length>0){
-        console.log(prescriptions ,prescriptions.length)
-        return(
-            <div>
-                <IndexDisplay prescriptions={prescriptions} toShow={toShow} toNew={toNew} toUpdate={toUpdate}/>
-            </div>
-=======
   const getPrescriptions = async () => {
     const data = await getDocs(prescriptionsCollectionRef);
     setPrescriptions(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
 
   useEffect(() => {
-    getPrescriptions();
-  }, []);
+    getUIDList();
+  }, [currentUser]);
 
   const toIndex = () => {
     setIndexState(true);
@@ -119,7 +56,6 @@ const CombinedPrescription = (props) => {
     setUpdateState(false);
     setShowState(false);
   };
->>>>>>> 928ba6ea73de04fedf29b5e8d219d087125c7cdf
 
   const toShow = (prescription) => {
     setPrescription(prescription);
@@ -136,11 +72,10 @@ const CombinedPrescription = (props) => {
     setUpdateState(true);
     setShowState(false);
   };
-  // if (!currentUser){
-  //     return(
-  //         <Login />
-  //     )
-  // }
+  if (!currentUser) {
+    return <Login />;
+  }
+
   if (indexState && prescriptions.length > 0) {
     console.log(prescriptions, prescriptions.length);
     return (
