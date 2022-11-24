@@ -6,9 +6,11 @@ import { useAuth } from "../Login/firebase";
 
 const UpdateJournal = ({ journal, toIndex }) => {
   const currentUser = useAuth();
+  const date = today.setDate(today.getDate() + numberOfDaysToAdd); 
+  const defaultValue = new Date(date).toISOString().split('T')[0] // yyyy-mm-dd
   const returnValues = (updatedValues) => {
     const docRef = doc(db, "Journal", journal.id);
-    setDoc(docRef, { ...updatedValues, UID: currentUser.uid, timestamp: "24/11/22" });
+    setDoc(docRef, { ...updatedValues, UID: currentUser.uid, timestamp: defaultValue });
     toIndex();
   };
   return (
