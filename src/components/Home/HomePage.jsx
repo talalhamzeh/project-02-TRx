@@ -106,7 +106,7 @@ const HomePage = () => {
                 <Typography variant="body2" color="text.secondary">
                   {medication.description}
                 </Typography>
-                <Typography variant="body2" color="red">
+                <Typography variant="body2" color="red" class="text-truncate">
                   {medication.adverseEffects}
                 </Typography>
               </CardContent>
