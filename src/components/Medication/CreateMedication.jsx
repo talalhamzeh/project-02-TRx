@@ -2,13 +2,8 @@ import { useState, useEffect } from "react";
 import { db } from "../Login/firebase";
 import { collection, getDocs, addDoc } from "firebase/firestore";
 import axios from "axios";
-<<<<<<< HEAD
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import Button from "@mui/material/Button";
-=======
-import Button from "@mui/material/Button";
-import AddBoxIcon from "@mui/icons-material/AddBox";
->>>>>>> 3dbdc6e519f04fdde6b6d0eee790bae92d1691f3
 
 const CreateMedication = () => {
   const [newMedication, setNewMedication] = useState("");
@@ -88,7 +83,6 @@ const CreateMedication = () => {
           setName(event.target.value);
         }}
       />
-<<<<<<< HEAD
       <div>
         <Button startIcon={<AddBoxIcon />}
           variant="contained"
@@ -101,18 +95,6 @@ const CreateMedication = () => {
 
        </div>
       
-=======
-      <Button
-        startIcon={<AddBoxIcon />}
-        onClick={_handleNew}
-        variant="contained"
-        color="success"
-        size="small"
-      >
-        Create Medication
-      </Button>
-
->>>>>>> 3dbdc6e519f04fdde6b6d0eee790bae92d1691f3
       <div className="errors">
         <p>{error}</p>
       </div>
