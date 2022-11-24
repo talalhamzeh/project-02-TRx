@@ -26,9 +26,14 @@ const IndexDisplay = ({ prescriptions, toShow, toNew, toUpdate }) => {
             >
               Edit Prescription
             </Button>
+            
           </div>
         );
       })}
+
+      
+<div class="divider"/>
+<div class ="text-center "> 
       <Button
         startIcon={<AddBoxIcon />}
         onClick={toNew}
@@ -38,6 +43,7 @@ const IndexDisplay = ({ prescriptions, toShow, toNew, toUpdate }) => {
       >
         New Prescription
       </Button>
+      </div>
     </div>
   );
 };

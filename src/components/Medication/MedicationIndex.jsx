@@ -5,6 +5,7 @@ import ShowMedication from "./ShowMedication";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "./medication.css";
+import CreateMedication from "./CreateMedication"
 
 const MedicationIndex = () => {
   const [medications, setMedications] = useState([]);
@@ -37,6 +38,9 @@ const MedicationIndex = () => {
   if (indexState) {
     return (
       <div class="main">
+        <div>
+          <CreateMedication/>
+        </div>
         {medications.map((medication) => {
           return (
             <div>

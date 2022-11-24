@@ -7,8 +7,10 @@ import { useAuth} from "../Login/firebase";
 const UpdatePrescription = ({prescription, toIndex})=>{
     const currentUser = useAuth(); 
     const returnValues=(updatedValues)=>{
+        console.log(prescription)
         const docRef = doc(db, "Prescriptions", prescription.id)
         setDoc(docRef,{...updatedValues, UID: currentUser.uid})
+        toIndex()
     }
 
     return (

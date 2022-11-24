@@ -4,10 +4,17 @@ import Button from "@mui/material/Button";
 import BookIcon from "@mui/icons-material/Book";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
+import { db } from "../Login/firebase";
+import { collection, getDocs, query, where } from "firebase/firestore";
+
+
+
 const JournalForm = ({ toIndex, returnValues, data = {} }) => {
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState(" ");
   const [sideEffects, setSideEffects] = useState("");
   const [painLevels, setPainLevels] = useState("");
+  console.log(data)
+  
 
   return (
     <div className="form">
@@ -16,10 +23,15 @@ const JournalForm = ({ toIndex, returnValues, data = {} }) => {
           Comments:
           <p>
             <textarea
-              placeholder="Write your entry here"
-              onChange={(event) => {
-                setContent(event.target.value);
-              }}
+        
+             defaultValue={data.content}
+             type="text"
+            placeholder="Write your entry here"
+
+            onChange={(event) => {
+              setContent(event.target.value);
+            }} 
+            
             />
           </p>
         </label>
@@ -29,10 +41,12 @@ const JournalForm = ({ toIndex, returnValues, data = {} }) => {
           Symptoms:
           <p>
             <textarea
+            defaultValue={data.sideEffects}
               placeholder="List your side effects here"
               onChange={(event) => {
                 setSideEffects(event.target.value);
               }}
+            
             />
           </p>
         </label>
@@ -148,24 +162,40 @@ const JournalForm = ({ toIndex, returnValues, data = {} }) => {
               setPainLevels(event.target.value);
             }}
           />
+
+          
         </label>
       </p>
+      
       <Button
         onClick={(event) =>
-          returnValues({
-            content: content,
-            sideEffects: sideEffects,
-            painLevel: painLevels,
-          })
+          {if(data.id){
+            returnValues({
+              content: content,
+              sideEffects: sideEffects,
+              painLevel: painLevels,
+              id: data.id
+            })}else {
+              returnValues({
+                content: content,
+                sideEffects: sideEffects,
+                painLevel: painLevels,
+              })
+            }}
         }
         size="small"
         variant="contained"
         color="success"
         startIcon={<BookIcon />}
       >
-        Create Journal Entry
+
+        
+        {data.content ? "Update" : "Create"} Journal
       </Button>
-      <Button
+      <div class="divider" /> 
+
+
+      <Button 
         size="small"
         onClick={toIndex}
         variant="contained"
@@ -174,6 +204,7 @@ const JournalForm = ({ toIndex, returnValues, data = {} }) => {
       >
         Back
       </Button>
+      
     </div>
   );
 };
