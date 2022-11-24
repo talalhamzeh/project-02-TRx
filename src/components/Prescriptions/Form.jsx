@@ -13,6 +13,7 @@ const Form = ({ returnValues, data = {} }) => {
   const [refillDate, setRefillDate] = useState("");
   const [medications, setMedications] = useState([]);
   const [medicationID, setMedicationID] = useState("");
+  const [scriptName, setScriptName] = useState("");
   const [toggle, setToggle] = useState([]);
   const medicationsCollectionRef = collection(db, "Medications");
 
@@ -33,13 +34,13 @@ const Form = ({ returnValues, data = {} }) => {
     <div className="#container">
       <div className="form">
         <form>
-          <label for="dname">Drug Name</label>
+          <label for="dname">Script Name</label>
           <input
-            defaultValue={data.drug_name}
+            defaultValue={data.script_name}
             type="text"
             placeholder="Drug Name"
             onChange={(event) => {
-              setDrugName(event.target.value);
+              setScriptName(event.target.value);
             }}
           />
           <label for="medic">Medication</label>
@@ -59,7 +60,7 @@ const Form = ({ returnValues, data = {} }) => {
 
           <label for="dosage">Dosage</label>
           <input
-            defaultValue={data.dosage_history}
+            defaultValue={data.dosage_strength}
             type="text"
             placeholder="Dosage"
             onChange={(event) => {
@@ -87,7 +88,7 @@ const Form = ({ returnValues, data = {} }) => {
           />
           <label for="dpr">Doses per refill</label>
           <input
-            defaultValue={data.dose_strength}
+            defaultValue={data.doses_per_refill}
             type="text"
             placeholder="Doses per refill"
             onChange={(event) => {
@@ -108,13 +109,15 @@ const Form = ({ returnValues, data = {} }) => {
         <button
           onClick={(event) =>
             returnValues({
+              prescription_name: scriptName,
               drug_name: drugName,
               medication_id: medicationID,
-              dosage_history: dosage,
+              // dosage_history: dosage,
               refills: numberOfReffils,
               daily_dosage: dosesPerDay,
-              dose_strength: dosesPerRefill,
+              dose_strength: dosage,
               refill_date: refillDate,
+              doses_per_refill: dosesPerRefill,
             })
           }
         >
