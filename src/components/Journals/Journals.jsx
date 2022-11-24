@@ -27,12 +27,12 @@ const Journals = (props) => {
     const qArray = [];
     querySnapshot.forEach((doc) => {
       // doc.data() is never undefined for query doc snapshots
-      qArray.push(doc.data());
+      qArray.push({...doc.data(),id: doc.id});
       console.log(doc.id, " => ", doc.data());
       //
     });
     console.log(qArray);
-    setJournals(qArray.map((doc) => ({ ...doc })));
+    setJournals(qArray);
   };
 
 
