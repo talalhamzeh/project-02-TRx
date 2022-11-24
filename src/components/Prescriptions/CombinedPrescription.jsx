@@ -37,26 +37,44 @@ const CombinedPrescription = (props) => {
       };
 
 
-  const toShow = (prescription) => {
-    setPrescription(prescription);
-    setIndexState(false);
-    setNewState(false);
-    setUpdateState(false);
-    setShowState(true);
-  };
-  const toUpdate = (prescription) => {
-    setPrescription(prescription);
-    console.log(prescription);
-    setIndexState(false);
-    setNewState(false);
-    setUpdateState(true);
-    setShowState(false);
-  };
-  if (!currentUser){
-      return(
-          <Login />
-      )
-  }
+    useEffect(() => {
+        getUIDList()
+    },[currentUser]);
+
+    const toIndex = ()=>{
+        setIndexState(true);
+        setNewState(false);
+        setUpdateState(false);
+        setShowState(false)
+    }
+    const toNew = () => {
+        setIndexState(false);
+        setNewState(true);
+        setUpdateState(false);
+        setShowState(false)
+    }
+    
+    const toShow = (prescription) => {
+        setPrescription(prescription);
+        setIndexState(false);
+        setNewState(false);
+        setUpdateState(false);
+        setShowState(true)
+    }
+    const toUpdate = (prescription) => {
+        setPrescription(prescription)
+        console.log(prescription)
+        setIndexState(false);
+        setNewState(false);
+        setUpdateState(true);
+        setShowState(false);
+    }
+    if (!currentUser){
+        return(
+            <Login />
+        )
+    }
+
   if (indexState && prescriptions.length > 0) {
     console.log(prescriptions, prescriptions.length);
     return (

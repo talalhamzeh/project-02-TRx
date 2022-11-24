@@ -35,16 +35,6 @@ const Journals = (props) => {
     setJournals(qArray.map((doc) => ({ ...doc })));
   };
 
-<<<<<<< HEAD
-  // if (currentUser) {
-  //   getUIDList();
-  // }
-
-  useEffect(() => {
-    getJournals()
-  }, []);
-
-=======
 
   useEffect(() => {
     if (currentUser) {
@@ -52,7 +42,6 @@ const Journals = (props) => {
       }
   }, [currentUser]);
   
->>>>>>> 4cf869596ba6d21c56f6c4fac011338c76eeef82
   const toIndex = () => {
     setIndexState(true);
     setNewState(false);

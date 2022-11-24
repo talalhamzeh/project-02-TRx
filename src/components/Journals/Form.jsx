@@ -46,7 +46,7 @@ const JournalForm = ({ toIndex, returnValues, data = {} }) => {
               onChange={(event) => {
                 setSideEffects(event.target.value);
               }}
-              defaultValue={data.sideEffects} 
+            
             />
           </p>
         </label>
@@ -182,7 +182,7 @@ const JournalForm = ({ toIndex, returnValues, data = {} }) => {
       >
 
         
-        Create Journal Entry
+        {data.content ? "Update" : "Create"} Journal
       </Button>
       <div class="divider" /> 
 
