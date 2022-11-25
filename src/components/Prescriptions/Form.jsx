@@ -3,6 +3,9 @@ import { useState, useEffect } from "react";
 import { db } from "../Login/firebase";
 import { collection, doc, getDocs } from "firebase/firestore";
 import CreateMedication from "../Medication/CreateMedication"
+import Button from "@mui/material/Button";
+import AddBoxIcon from "@mui/icons-material/AddBox";
+
 
 
 const Form = ({ returnValues, data = {} }) => {
@@ -13,9 +16,9 @@ const Form = ({ returnValues, data = {} }) => {
   const [dosesPerRefill, setDosesPerRefill] = useState("");
   const [refillDate, setRefillDate] = useState("");
   const [medications, setMedications] = useState([]);
-  const [medicationID, setMedicationID]= useState("")
-  const [scriptName, setScriptName] = useState('')
-  const [toggle, setToggle] = useState([])
+  const [medicationID, setMedicationID] = useState("");
+  const [scriptName, setScriptName] = useState("");
+  const [toggle, setToggle] = useState([]);
   const medicationsCollectionRef = collection(db, "Medications");
 
   useEffect(() => {
@@ -24,18 +27,15 @@ const Form = ({ returnValues, data = {} }) => {
       setMedications(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
 
-
     getMedications();
   }, []);
 
-  const handleNewMeds=()=>{
-
-      setToggle([<CreateMedication />])
-  }
+  const handleNewMeds = () => {
+    setToggle([<CreateMedication />]);
+  };
 
   return (
-
-    <div className="container">
+    <div className="#container">
       <div className="form">
         <form>
           <label for="dname">Script Name</label>
@@ -48,20 +48,19 @@ const Form = ({ returnValues, data = {} }) => {
             }}
           />
           <label for="medic">Medication</label>
-          <select id="select" > 
-             {medications.map((medication) => (
-               <option value={medication.id}
-                  onChange={(event) => {
-                    setDrugName(event.target.html);
-                    setMedicationID(event.target.value);
-                  }
-                }>
-                  {medication.brandName}
-                </option>
-              ))}
-
+          <select id="select">
+            {medications.map((medication) => (
+              <option
+                value={medication.id}
+                onChange={(event) => {
+                  setDrugName(event.target.html);
+                  setMedicationID(event.target.value);
+                }}
+              >
+                {medication.brandName}
+              </option>
+            ))}
           </select>
-
 
           <label for="dosage">Dosage</label>
           <input
@@ -109,29 +108,33 @@ const Form = ({ returnValues, data = {} }) => {
               setRefillDate(event.target.value);
             }}
           />
-      
         </form>
-      
 
-          <button
-            onClick={(event) =>
-              returnValues({
-                prescription_name: scriptName,
-                drug_name: drugName,
-                medication_id: medicationID,
-                // dosage_history: dosage,
-                refills: numberOfReffils,
-                daily_dosage: dosesPerDay,
-                dose_strength: dosage,
-                refill_date: refillDate,
-                doses_per_refill: dosesPerRefill,
-              })
-            }
-          >
-            {data.drug_name ? "Update" : "Create"} Prescription
-          </button>
+
+          <div class ="text-center "> 
+             <Button
+              startIcon={<AddBoxIcon />}
+              variant="contained"
+              color="success"
+              size="small"
+              onClick={(event) =>
+                returnValues({
+                  drug_name: drugName,
+                  medication_id: medicationID,
+                 // dosage_history: dosage,
+                  refills: numberOfReffils,
+                  daily_dosage: dosesPerDay,
+                  dose_strength: dosesPerRefill,
+                  refill_date: refillDate,
+                })
+              }
+            >
+             {data.drug_name ? "Update" : "Create"} Prescription
+            </Button>
+          </div>
 
     </div>
+
     </div>
   );
 };
