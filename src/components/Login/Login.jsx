@@ -24,7 +24,7 @@ export default function Login(props) {
     }
   }
   return (
-      <form>
+      <div>
         <h3>Sign In</h3>
         <div>
           <div>Currently logged in as: { currentUser?.email } </div>
@@ -73,7 +73,7 @@ export default function Login(props) {
         <p className="forgot-password text-right">
           Not Registered  <a href="/signup">Sign up</a>
         </p>
-      </form>
+      </div>
 
   )
 }
