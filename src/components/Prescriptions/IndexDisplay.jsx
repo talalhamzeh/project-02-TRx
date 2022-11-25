@@ -5,7 +5,8 @@ import AddBoxIcon from "@mui/icons-material/AddBox";
 import EditIcon from "@mui/icons-material/Edit";
 import "./prescription.css";
 
-const IndexDisplay = ({ prescriptions, toShow, toNew, toUpdate }) => {
+
+const IndexDisplay = ({ prescriptions, toShow, toNew, toUpdate  }) => {
   // const prescriptions = props.data
   console.log(prescriptions);
   return (
@@ -24,7 +25,7 @@ const IndexDisplay = ({ prescriptions, toShow, toNew, toUpdate }) => {
               size="small"
               startIcon={<EditIcon />}
             >
-              Edit Prescription
+             {prescription.drug_name ? "edit Prescription" : " "} 
             </Button>
             
           </div>

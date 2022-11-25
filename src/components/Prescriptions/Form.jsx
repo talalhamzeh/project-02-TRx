@@ -2,7 +2,11 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { db } from "../Login/firebase";
 import { collection, doc, getDocs } from "firebase/firestore";
-import CreateMedication from "../Medication/CreateMedication";
+import CreateMedication from "../Medication/CreateMedication"
+import Button from "@mui/material/Button";
+import AddBoxIcon from "@mui/icons-material/AddBox";
+
+
 
 const Form = ({ returnValues, data = {} }) => {
   const [drugName, setDrugName] = useState("");
@@ -106,24 +110,31 @@ const Form = ({ returnValues, data = {} }) => {
           />
         </form>
 
-        <button
-          onClick={(event) =>
-            returnValues({
-              prescription_name: scriptName,
-              drug_name: drugName,
-              medication_id: medicationID,
-              // dosage_history: dosage,
-              refills: numberOfReffils,
-              daily_dosage: dosesPerDay,
-              dose_strength: dosage,
-              refill_date: refillDate,
-              doses_per_refill: dosesPerRefill,
-            })
-          }
-        >
-          {data.drug_name ? "Update" : "Create"} Prescription
-        </button>
-      </div>
+
+          <div class ="text-center "> 
+             <Button
+              startIcon={<AddBoxIcon />}
+              variant="contained"
+              color="success"
+              size="small"
+              onClick={(event) =>
+                returnValues({
+                  drug_name: drugName,
+                  medication_id: medicationID,
+                 // dosage_history: dosage,
+                  refills: numberOfReffils,
+                  daily_dosage: dosesPerDay,
+                  dose_strength: dosesPerRefill,
+                  refill_date: refillDate,
+                })
+              }
+            >
+             {data.drug_name ? "Update" : "Create"} Prescription
+            </Button>
+          </div>
+
+    </div>
+
     </div>
   );
 };
