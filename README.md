@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# Trx
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Sophia Pache, Michael Anderson, Talal Hamzeh
 
-## Available Scripts
+### Live
 
-In the project directory, you can run:
+[View the website here.](https://trx-auth.web.app/home)
 
-### `npm start`
+### Overview
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+TRx (pronounced Tracks) is a prescription tracking website, where you
+can log current prescriptions and their histories. You may also write
+journal entries to describe your experiences on your prescriptions and
+any side effects you may be experiencing. Below, you can see a sample of
+our medication library that describes common medications and common
+adverse effects / warnings.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Language Stack
 
-### `npm test`
+This project was created with using React as a front-end and Firebase as the back-end.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. JavaScript
+2. HTML
+3. CSS
 
-### `npm run build`
+### APIs/Packages/Technologies Used
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- React
+- Firebase
+- OpenFDA API
+- Bootstrap
+- Material UI
+- Axios
+- SASS
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Features
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+A user can create an account and log in with their credientials to keep their prescriptions and journals private.
 
-### `npm run eject`
+Once logged in, a user can create prescription files, keeping track of their dosages, refills, refill date, etc
+They can also write journal entries to describe their experiences on certain medications and the side effects and pain levels they are experiencing.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The website features a medication library, where you can create new medication information in the database by searching a medication and having an API retrieve information on it, such as the brand and generic name, description, and adverse effects.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Improvements
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+There are still quite a few bugs that can be fixed throughout the site and I think due to each page being a single page application it is essential we implement more automatic page updating without the user having to refresh to see any changes.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Acknowledgments
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Thank you to the colloboration of all the groupmates and of course, Joel and Loden for always providing the BEST guidance.
