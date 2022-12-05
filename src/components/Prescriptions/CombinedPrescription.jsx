@@ -24,16 +24,16 @@ const CombinedPrescription = (props) => {
       prescriptionsCollectionRef,
       where("UID", "==", currentUser.uid)
     );
-    console.log(q);
+    // console.log(q);
     const querySnapshot = await getDocs(q);
     const qArray = [];
     querySnapshot.forEach((doc) => {
       // doc.data() is never undefined for query doc snapshots
       qArray.push({ ...doc.data(), id: doc.id });
-      console.log(doc.id, " => ", doc.data());
+      // console.log(doc.id, " => ", doc.data());
       //
     });
-    console.log(qArray);
+    // console.log(qArray);
     setPrescriptions(qArray);
   };
 
@@ -63,7 +63,7 @@ const CombinedPrescription = (props) => {
   };
   const toUpdate = (prescription) => {
     setPrescription(prescription);
-    console.log(prescription);
+    // console.log(prescription);
     setIndexState(false);
     setNewState(false);
     setUpdateState(true);
@@ -74,7 +74,7 @@ const CombinedPrescription = (props) => {
   }
 
   if (indexState && prescriptions.length > 0) {
-    console.log(prescriptions, prescriptions.length);
+    // console.log(prescriptions, prescriptions.length);
     return (
       <div>
         <IndexDisplay

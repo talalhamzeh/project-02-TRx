@@ -7,15 +7,14 @@ import EditIcon from "@mui/icons-material/Edit";
 const IndexDisplay = ({ journals, toNew, toUpdate, toShow }) => {
   // const prescriptions = props.data
 
-
   return (
     <div className="index">
       {journals.map((journal) => {
-        console.log(journal)
+        // console.log(journal)
         return (
           <div key={journal.div}>
             <span onClick={(event) => toShow(journal)} class="journal">
-            <i> {journal.timestamp} </i>
+              <i> {journal.timestamp} </i>
               <br></br>
             </span>
             <Button
@@ -30,8 +29,8 @@ const IndexDisplay = ({ journals, toNew, toUpdate, toShow }) => {
           </div>
         );
       })}
-      <div class="divider"/>
-        <div class ="text-center ">
+      <div class="divider" />
+      <div class="text-center ">
         <Button
           startIcon={<AddBoxIcon />}
           onClick={toNew}

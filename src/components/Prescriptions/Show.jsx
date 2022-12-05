@@ -9,8 +9,6 @@ import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
-
-
 const Show = ({ prescription, toShow, toIndex }) => {
   const bull = (
     <Box
@@ -19,10 +17,8 @@ const Show = ({ prescription, toShow, toIndex }) => {
     >
       •
     </Box>
-
-
   );
-  console.log(prescription)
+  // console.log(prescription);
   return (
     <Box>
       <Card sx={{ maxWidth: 345 }} class="center" variant="outlined">
@@ -34,37 +30,37 @@ const Show = ({ prescription, toShow, toIndex }) => {
         />
         <CardContent>
           <Typography gutterBottom variant="h4" component="div">
-            {prescription.drug_name}
+            {prescription.script_name}
           </Typography>
           <Typography gutterBottom variant="h6" component="div">
-            Daily Dosage:
+            Medication name:
           </Typography>
           <Typography gutterBottom variant="h7" component="div">
-            {prescription.daily_dosage}
+            {/* {medication_name} */}
           </Typography>
           <Typography gutterBottom variant="h6" component="div">
-            Daily Strength:
-          </Typography>
-          <Typography gutterBottom variant="h7" component="div">
-            {prescription.dosage_history}
-          </Typography>
-          <Typography gutterBottom variant="h6" component="div">
-            Number of Refills:
+            Dosage:
           </Typography>
           <Typography gutterBottom variant="h7" component="div">
             {prescription.dose_strength}
           </Typography>
           <Typography gutterBottom variant="h6" component="div">
-            Daily Dosage:
+            Daily doses:
           </Typography>
           <Typography gutterBottom variant="h7" component="div">
             {prescription.daily_dosage}
+          </Typography>
+          <Typography gutterBottom variant="h6" component="div">
+            Number of refills:
+          </Typography>
+          <Typography gutterBottom variant="h7" component="div">
+            {prescription.refills}
           </Typography>
           <Typography gutterBottom variant="h6" component="div">
             Doses per Refill:
           </Typography>
           <Typography gutterBottom variant="h7" component="div">
-            {prescription.dose_strength}
+            {prescription.doses_per_refill}
           </Typography>
           <Typography gutterBottom variant="h6" component="div">
             Refill Date:
@@ -74,9 +70,8 @@ const Show = ({ prescription, toShow, toIndex }) => {
           </Typography>
         </CardContent>
         <CardActions>
-         
           <div>
-             <Button 
+            <Button
               size="small"
               onClick={toIndex}
               variant="contained"
@@ -85,13 +80,7 @@ const Show = ({ prescription, toShow, toIndex }) => {
             >
               Back
             </Button>
-
-            </div>
-
-
-
-
-
+          </div>
         </CardActions>
       </Card>
     </Box>

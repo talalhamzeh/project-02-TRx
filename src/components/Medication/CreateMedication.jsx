@@ -15,7 +15,7 @@ const CreateMedication = () => {
   useEffect(() => {
     const getMedications = async () => {
       const data = await getDocs(medicationsCollectionRef);
-      console.log(data.docs);
+      // console.log(data.docs);
       setMedications(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
 
@@ -61,7 +61,7 @@ const CreateMedication = () => {
         setError("");
         for (let i = 0; i < medications.length; i++) {
           medicationsBrandName.push(medications[i].brandName);
-          console.log(medicationsBrandName);
+          // console.log(medicationsBrandName);
         }
         if (medicationsBrandName.includes(medicationData.brandName)) {
           setError("Already in database.");
@@ -84,17 +84,17 @@ const CreateMedication = () => {
         }}
       />
       <div>
-        <Button startIcon={<AddBoxIcon />}
+        <Button
+          startIcon={<AddBoxIcon />}
           variant="contained"
           color="success"
           size="small"
           onClick={_handleNew}
         >
           Create Medication
-       </Button>
+        </Button>
+      </div>
 
-       </div>
-      
       <div className="errors">
         <p>{error}</p>
       </div>

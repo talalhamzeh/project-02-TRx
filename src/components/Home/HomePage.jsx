@@ -30,16 +30,16 @@ const HomePage = () => {
       prescriptionsCollectionRef,
       where("UID", "==", currentUser.uid)
     );
-    console.log(q);
+    // console.log(q);
     const querySnapshot = await getDocs(q);
     const qArray = [];
     querySnapshot.forEach((doc) => {
       // doc.data() is never undefined for query doc snapshots
       qArray.push(doc.data());
-      console.log(doc.id, " => ", doc.data());
+      // console.log(doc.id, " => ", doc.data());
       //
     });
-    console.log(qArray);
+    // console.log(qArray);
     setPrescriptions(qArray.map((doc) => ({ ...doc })));
   };
 
@@ -51,7 +51,7 @@ const HomePage = () => {
     querySnapshot.forEach((doc) => {
       // doc.data() is never undefined for query doc snapshots
       qArray.push(doc.data());
-      console.log(doc.id, " => ", doc.data());
+      // console.log(doc.id, " => ", doc.data());
       //
     });
     setJournals(qArray.map((doc) => ({ ...doc })));

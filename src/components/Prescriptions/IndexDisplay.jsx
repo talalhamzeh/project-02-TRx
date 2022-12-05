@@ -5,17 +5,16 @@ import AddBoxIcon from "@mui/icons-material/AddBox";
 import EditIcon from "@mui/icons-material/Edit";
 import "./prescription.css";
 
-
-const IndexDisplay = ({ prescriptions, toShow, toNew, toUpdate  }) => {
+const IndexDisplay = ({ prescriptions, toShow, toNew, toUpdate }) => {
   // const prescriptions = props.data
-  console.log(prescriptions);
+  // console.log(prescriptions);
   return (
     <div className="index">
       {prescriptions.map((prescription) => {
         return (
           <div key={prescription.div}>
             <h1 onClick={(event) => toShow(prescription)} class="prescription">
-              {prescription.drug_name}{" "}
+              {prescription.script_name}{" "}
             </h1>
 
             <Button
@@ -25,25 +24,23 @@ const IndexDisplay = ({ prescriptions, toShow, toNew, toUpdate  }) => {
               size="small"
               startIcon={<EditIcon />}
             >
-             {prescription.drug_name ? "edit Prescription" : " "} 
+              {prescription.drug_name ? "edit Prescription" : " "}
             </Button>
-            
           </div>
         );
       })}
 
-      
-<div class="divider"/>
-<div class ="text-center "> 
-      <Button
-        startIcon={<AddBoxIcon />}
-        onClick={toNew}
-        variant="contained"
-        color="success"
-        size="small"
-      >
-        New Prescription
-      </Button>
+      <div class="divider" />
+      <div class="text-center ">
+        <Button
+          startIcon={<AddBoxIcon />}
+          onClick={toNew}
+          variant="contained"
+          color="success"
+          size="small"
+        >
+          New Prescription
+        </Button>
       </div>
     </div>
   );

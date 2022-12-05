@@ -2,11 +2,9 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { db } from "../Login/firebase";
 import { collection, doc, getDocs } from "firebase/firestore";
-import CreateMedication from "../Medication/CreateMedication"
+import CreateMedication from "../Medication/CreateMedication";
 import Button from "@mui/material/Button";
 import AddBoxIcon from "@mui/icons-material/AddBox";
-
-
 
 const Form = ({ returnValues, data = {} }) => {
   const [drugName, setDrugName] = useState("");
@@ -26,10 +24,27 @@ const Form = ({ returnValues, data = {} }) => {
       const data = await getDocs(medicationsCollectionRef);
       setMedications(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
-
+    getData();
     getMedications();
   }, []);
 
+  const getData = () => {
+    // console.log(data);
+    // script_name: scriptName,
+    setScriptName(data.script_name ? data.script_name : "");
+    // medication_id: medicationID,
+    setMedicationID(data.medicationID ? data.medicationID : "");
+    // // dosage_history: dosage,
+    setDosage(data.dosage ? data.dosage : "");
+    // refills: numberOfReffils,
+    setNumberOfReffils(data.refills ? data.refills : "");
+    // daily_dosage: dosesPerDay,
+    setDosesPerDay(data.daily_dosage ? data.daily_dosage : "");
+    // dose_strength: dosesPerRefill,
+    setDosesPerRefill(data.doses_per_day ? data.doses_per_day : "");
+    // refill_date: refillDate,
+    setRefillDate(data.refill_date ? data.refillDate : "");
+  };
   const handleNewMeds = () => {
     setToggle([<CreateMedication />]);
   };
@@ -42,39 +57,45 @@ const Form = ({ returnValues, data = {} }) => {
           <input
             defaultValue={data.script_name}
             type="text"
-            placeholder="Drug Name"
+            placeholder="Script Name"
             onChange={(event) => {
               setScriptName(event.target.value);
             }}
           />
           <label for="medic">Medication</label>
-          <select id="select">
+          <select
+            id="select"
+            onChange={(event) => {
+              // console.log(event.target.value);
+              setMedicationID(event.target.value);
+              // console.log(event.target.html);
+            }}
+            defaultValue={data.medication_id}
+            required
+          >
+            <option value="">** Select a medication **</option>
             {medications.map((medication) => (
-              <option
-                value={medication.id}
-                onChange={(event) => {
-                  setDrugName(event.target.html);
-                  setMedicationID(event.target.value);
-                }}
-              >
-                {medication.brandName}
-              </option>
+              <option value={medication.id}>{medication.brandName}</option>
             ))}
           </select>
 
           <label for="dosage">Dosage</label>
           <input
-            defaultValue={data.dosage_strength}
+            required
+            defaultValue={data.dose_strength}
             type="text"
-            placeholder="Dosage"
+            placeholder="3mg"
             onChange={(event) => {
+              console.log(event.target.value);
               setDosage(event.target.value);
+              console.log("dosage", dosage);
             }}
           />
+          <h3>Refill Calculator</h3>
           <label for="nor">Number of refills</label>
           <input
             defaultValue={data.refills}
-            type="text"
+            type="number"
             placeholder="Number of refills"
             onChange={(event) => {
               setNumberOfReffils(event.target.value);
@@ -84,7 +105,7 @@ const Form = ({ returnValues, data = {} }) => {
           <label for="dd">Daily Doses</label>
           <input
             defaultValue={data.daily_dosage}
-            type="text"
+            type="number"
             placeholder="Daily Doses"
             onChange={(event) => {
               setDosesPerDay(event.target.value);
@@ -93,7 +114,7 @@ const Form = ({ returnValues, data = {} }) => {
           <label for="dpr">Doses per refill</label>
           <input
             defaultValue={data.doses_per_refill}
-            type="text"
+            type="number"
             placeholder="Doses per refill"
             onChange={(event) => {
               setDosesPerRefill(event.target.value);
@@ -110,31 +131,28 @@ const Form = ({ returnValues, data = {} }) => {
           />
         </form>
 
-
-          <div class ="text-center "> 
-             <Button
-              startIcon={<AddBoxIcon />}
-              variant="contained"
-              color="success"
-              size="small"
-              onClick={(event) =>
-                returnValues({
-                  drug_name: drugName,
-                  medication_id: medicationID,
-                 // dosage_history: dosage,
-                  refills: numberOfReffils,
-                  daily_dosage: dosesPerDay,
-                  dose_strength: dosesPerRefill,
-                  refill_date: refillDate,
-                })
-              }
-            >
-             {data.drug_name ? "Update" : "Create"} Prescription
-            </Button>
-          </div>
-
-    </div>
-
+        <div class="text-center ">
+          <Button
+            startIcon={<AddBoxIcon />}
+            variant="contained"
+            color="success"
+            size="small"
+            onClick={(event) =>
+              returnValues({
+                script_name: scriptName,
+                medication_id: medicationID,
+                doses_per_refill: dosesPerRefill,
+                refills: numberOfReffils,
+                daily_dosage: dosesPerDay,
+                dose_strength: dosage,
+                refill_date: refillDate,
+              })
+            }
+          >
+            {data.drug_name ? "Update" : "Create"} Prescription
+          </Button>
+        </div>
+      </div>
     </div>
   );
 };
