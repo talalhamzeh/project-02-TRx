@@ -88,7 +88,7 @@ const Form = ({ returnValues, data = {} }) => {
             onChange={(event) => {
               console.log(event.target.value);
               setDosage(event.target.value);
-              console.log("dosage", dosage);
+              // console.log("dosage", dosage);
             }}
           />
           <h3>Refill Calculator</h3>

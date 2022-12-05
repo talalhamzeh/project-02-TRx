@@ -65,7 +65,7 @@ const ShowJournal = ({ toIndex, journal }) => {
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-          {journal.content}
+          Comments:{journal.content}
         </Typography>
         <Typography gutterBottom variant="h7" component="div">
           Prescriptions: {journal.prescriptions}

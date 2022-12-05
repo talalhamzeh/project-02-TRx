@@ -22,9 +22,12 @@ const NewJournal = ({ toIndex }) => {
       qArray.push(doc.data());
     });
     setPrescriptions(
-      qArray.map((doc) => `${doc.drug_name} ${doc.dosage_strength}`)
+      qArray.map((doc) => {
+        console.log(doc);
+        return `${doc.medication_id} ${doc.dose_strength}`;
+      })
     );
-    // console.log(prescriptions)
+    console.log(prescriptions);
   };
 
   useEffect(() => {

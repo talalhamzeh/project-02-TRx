@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import BookIcon from "@mui/icons-material/Book";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -12,6 +12,13 @@ const JournalForm = ({ toIndex, returnValues, data = {} }) => {
   const [sideEffects, setSideEffects] = useState("");
   const [painLevels, setPainLevels] = useState("");
   // console.log(data)
+  // setScriptName(data.script_name ? data.script_name : "")
+
+  useEffect(() => {
+    setContent(data.content ? data.content : "");
+    setSideEffects(data.SideEffects ? data.sideEffects : "");
+    setPainLevels(data.painLevels ? data.painLevels : "");
+  }, []);
 
   return (
     <div className="form">
