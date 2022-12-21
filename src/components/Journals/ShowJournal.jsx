@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -15,7 +15,7 @@ import SentimentVerySatisfiedIcon from "@mui/icons-material/SentimentVerySatisfi
 import "./journal.css";
 
 const ShowJournal = ({ toIndex, journal }) => {
-  // console.log(journal);
+  const [rating, setRating] = useState();
   const StyledRating = styled(Rating)(({ theme }) => ({
     "& .MuiRating-iconEmpty .MuiSvgIcon-root": {
       color: theme.palette.action.disabled,
@@ -52,6 +52,7 @@ const ShowJournal = ({ toIndex, journal }) => {
 
   function IconContainer(props: IconContainerProps) {
     const { value, ...other } = props;
+
     return <span {...other}>{customIcons[value].icon}</span>;
   }
 
@@ -80,6 +81,9 @@ const ShowJournal = ({ toIndex, journal }) => {
             IconContainerComponent={IconContainer}
             getLabelText={(value: number) => customIcons[value].label}
             highlightSelectedOnly
+            onChange={(event, newValue) => {
+              setRating(newValue);
+            }}
           />
         </Typography>
         <Typography variant="body2" color="red">
