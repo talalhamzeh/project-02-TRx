@@ -54,7 +54,7 @@ export default function App() {
                 />
               </Switch>
               <Switch>
-                <Route exact path="/home" component={HomePage} />
+                <Route exact path="/" component={HomePage} />
               </Switch>
               <Switch>
                 <Route path="/login" component={Login} />
