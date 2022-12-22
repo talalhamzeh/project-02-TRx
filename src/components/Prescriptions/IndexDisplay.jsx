@@ -24,7 +24,7 @@ const IndexDisplay = ({ prescriptions, toShow, toNew, toUpdate }) => {
               size="small"
               startIcon={<EditIcon />}
             >
-              {prescription.drug_name ? "edit Prescription" : " "}
+              {prescription.medication_id ? "edit Prescription" : " "}
             </Button>
           </div>
         );

@@ -36,7 +36,7 @@ const Show = ({ prescription, toShow, toIndex }) => {
             Medication name:
           </Typography>
           <Typography gutterBottom variant="h7" component="div">
-            {/* {medication_name} */}
+            {prescription.medication_id}
           </Typography>
           <Typography gutterBottom variant="h6" component="div">
             Dosage:
