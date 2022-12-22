@@ -70,7 +70,8 @@ const Form = ({ returnValues, data = {} }) => {
               setMedicationID(event.target.value);
               // console.log(event.target.html);
             }}
-          
+            value={data.medication_id}
+            required
           >
             <option value=""> {data.medication_id} </option>
             {medications.map((medication) => (
@@ -78,6 +79,8 @@ const Form = ({ returnValues, data = {} }) => {
               <option value={medication.id}>{medication.brandName}</option>
             ))}
           </select>
+          <p onClick={handleNewMeds}>Medication not listed</p>
+          <div>{toggle}</div>
 
           <label for="dosage">Dosage</label>
           <input
