@@ -73,8 +73,9 @@ const Form = ({ returnValues, data = {} }) => {
             value={data.medication_id}
             required
           >
-            <option value="">** Select a medication **</option>
+            <option value=""> {data.medication_id} </option>
             {medications.map((medication) => (
+              
               <option value={medication.id}>{medication.brandName}</option>
             ))}
           </select>
@@ -151,7 +152,7 @@ const Form = ({ returnValues, data = {} }) => {
               })
             }
           >
-            {data.drug_name ? "Update" : "Create"} Prescription
+            {data.script_name? "Update" : "Create"} Prescription
           </Button>
         </div>
       </div>
